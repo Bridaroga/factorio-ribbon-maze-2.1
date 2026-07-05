@@ -5,7 +5,11 @@ The maze itself is destined to be automated.
 Ribbon Maze challenges you to explore a maze in search of rich resources. The maze is impassable, but new late game
 technologies let you terraform the maze...
 
-Mod portal page: https://mods.factorio.com/mod/RibbonMaze
+* [Mod portal page](https://mods.factorio.com/mod/RibbonMaze)
+* [kajacx's 1.1 mod portal page](https://mods.factorio.com/mod/RibbonMaze018)
+* [garr150354839's 1.1 mod portal page](https://mods.factorio.com/mod/RibbonMaze1dot1)
+* [Knusan's 2.0 mod portal page](https://mods.factorio.com/mod/RibbonMaze20)
+* [Raphal's 2.1 mod portal page](https://mods.factorio.com/mod/RibbonMaze21)
 
 ## Key features
 
@@ -34,12 +38,12 @@ just providing a different control.lua should allow heavily customized setups, s
 Terrain graphics for maze adapted from the MIT-license More Floors mod by Tone
 (https://mods.factorio.com/mods/Tone/More_Floors).
 
-Thanks to illiander42 for various modifications.
+Thanks to [illiander42](https://mods.factorio.com/user/illiander42) for various modifications.
 
-Thanks to H8UL for create this mod.
+Thanks to [H8UL](https://github.com/H8UL) for create this mod.
 
-Thanks to kajacx for the 1.1 fix.
+Thanks to [kajacx](https://github.com/kajacx) and [garr150354839](https://mods.factorio.com/user/garr150354839) for the 1.1 fix.
 
-Thanks to Knusan for the 2.0 fix.
+Thanks to [Knusan](https://github.com/Knusan) for the 2.0 fix.
 
 Thanks also to Factorio staff and forum users for their help and support!
