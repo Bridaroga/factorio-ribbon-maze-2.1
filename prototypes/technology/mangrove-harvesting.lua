@@ -23,35 +23,35 @@
 data:extend{{
     type = "technology",
     name = "mangrove-harvesting",
-    icon_size = 128,
     icons = {
         {
-            icon = "__base__/graphics/technology/tanks.png",
+            icon = "__base__/graphics/technology/tank.png",
+            icon_size = 256,
         },
         {
-            icon = "__RibbonMaze__/graphics/technology/mangrove-harvesting.png",
-        }
+            icon = "__RibbonMaze21__/graphics/technology/mangrove-harvesting.png",
+            icon_size = 128,
+        },
     },
     effects =
     {
         {
             type = "unlock-recipe",
-            recipe = "mangrove-harvester"
-        }
+            recipe = "mangrove-harvester",
+        },
     },
-    prerequisites = {"tanks", "wood-kiln-drying"},
+    prerequisites = { "tank", "wood-kiln-drying", "production-science-pack" },
     unit =
     {
-        count = 100,
+        count = 300,
         ingredients =
         {
             {"production-science-pack", 1},
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
         },
-        time = 60
+        time = 60,
     },
-    order = "d-e-f"
-}
-}
+    order = "d-e-f",
+}}

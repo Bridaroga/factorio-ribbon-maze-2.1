@@ -24,7 +24,7 @@ local landfillRecipe = data.raw.recipe["landfill"]
 
 landfillRecipe.energy_required = 2.5
 landfillRecipe.ingredients = {
-    {"geocomposite", 1},
-    {"compost", 8},
-    {"stone", 80},
+    {type="item", name="geocomposite", amount=1},
+    {type="item", name="compost", amount=8},
+    {type="item", name="stone", amount=80},
 }

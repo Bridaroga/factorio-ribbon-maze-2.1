@@ -26,9 +26,9 @@ data:extend{{
     energy_required = 2,
     enabled = false,
     ingredients = {
-        {"burner-mining-drill", 1},
-        {"tank", 1},
+        {type="item", name="burner-mining-drill", amount=1},
+        {type="item", name="tank", amount=1},
     },
-    result = "mangrove-harvester"
+    results= {{type="item", name="mangrove-harvester", amount=1}},
 }}
 

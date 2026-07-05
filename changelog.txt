@@ -1,4 +1,69 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.23
+Date: 05. 07. 2026
+  Minor Features:
+    - Intermediate products now have productivity.
+  Changes:
+    - [Resource stretch factor] setting default from 1 to 3.
+    - Added a warning to [Loop chance] setting.
+    - Changed category from recipe [Wood kiln drying] to [smelting].
+    - Added [Automation science pack] requirement to [Wood kiln drying] technology.
+    - Deleted [Logistic science pack] requirement to [Wood kiln drying] technology.
+    - Added [Production science pack] requirement to [Landfill] technology.
+    - Changed the [Mangrove harvesting] technology cost from 100 to 300.
+    - Changed the [Maze terraforming] technology cost from 2000 to 5000.
+  Bugfixes:
+    - [Maze terraforming artillery wagon] was inactive in the mod.
+    - [Maze terraforming artillery wagon] recipe was missing in [Maze terraforming] technology.
+    - [Raw fish shredding] recipe was missing in [In-vessel composting] technology.
+    - Fixed [Mangrove harvesting] technology icon.
+    - Fixed [Maze terraforming] technology icon.
+    - Fixed [Oil scanning] technology icon.
+    - Fixed [Uranium scanning] technology icon.
+    - Fixed [Terraforming maze] achievement icon.
+    - Fixed [Feller buncher!] achievement icon.
+    - Fixed [Maze terraforming artillery shell] ammo category name.
+    - Fixed [Maze terraforming artillery shell] ammo category icon.
+    - Fixed [Maze terraforming artillery shell] subgroup.
+    - Fixed [Maze terraforming artillery cannon] tint sprites.
+  Translation:
+    - Translate to es-ES (español de España).
+  Info:
+    - All recipes are verified and working, but water at 65 °C have no use, maybe deleting later.
+    - TODO: Compatibility with [Quality] mod.
+    - TODO: Compatibility with [Recycler] mod.
+    - TODO: Compatibility with [Space Age] mod.
+    - TODO: Landfill are not destroying mangrove.
+    - TODO: Can't cut or "Super forced building" Maze terraforming artillery turret.
+    - TODO: Manual aiming not working.
+  Compatibility:
+    - Only [base] Factorio and [Elevated rails] are working at the moment.
+---------------------------------------------------------------------------------------------------
+Version: 0.8.5
+Date: 30. 11. 2020
+  Bugfixes:
+    - Updated to Factorio 1.1
+---------------------------------------------------------------------------------------------------
+Version: 0.8.4
+Date: 28. 09. 2020
+  Bugfixes:
+    - Changed chasm color from green to black
+---------------------------------------------------------------------------------------------------
+Version: 0.8.3
+Date: 05. 09. 2020
+  Bugfixes:
+    - Updated to Factorio 1.0
+---------------------------------------------------------------------------------------------------
+Version: 0.8.2
+Date: 17. 06. 2020
+  Bugfixes:
+    - Migrating from 0.17 will no longer crash the game
+---------------------------------------------------------------------------------------------------
+Version: 0.8.1
+Date: 23. 03. 2020
+  Changes:
+    - Ported to Factorio 0.18
+---------------------------------------------------------------------------------------------------
 Version: 0.7.6
 Date: 11. 05. 2019
   Changes:

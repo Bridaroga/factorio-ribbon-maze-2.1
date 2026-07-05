@@ -22,56 +22,56 @@
 
 local function convertToMazeTile(mazeTile)
     mazeTile.map_color={r=0.1, g=0.1, b=0.1}
+    
+    mazeTile.collision_mask = {layers= {item = true, water_tile= true, player=true, is_lower_object=true, object=true, is_object=true, floor=true, meltable=true, doodad=true, resource=true, ground_tile=true}}
+        -- "ground-tile",
+        
+        -- "resource-layer",
+        -- "floor-layer",
+        
+        
+        
+        -- "doodad-layer"
+    
 
-    mazeTile.collision_mask = {
-        "ground-tile",
-        "water-tile",
-        "resource-layer",
-        "floor-layer",
-        "item-layer",
-        "object-layer",
-        "player-layer",
-        "doodad-layer"
-    }
+    mazeTile.effect_color = {0.02, 0.02, 0.02}
 
     mazeTile.variants =
     {
+        empty_transitions = true,
         main =
         {
             {
-                picture = "__RibbonMaze__/graphics/terrain/maze-floor1.png",
+                picture = "__RibbonMaze21__/graphics/terrain/maze-floor1.png",
                 count = 16,
                 size = 1
             },
             {
-                picture = "__RibbonMaze__/graphics/terrain/maze-floor2.png",
+                picture = "__RibbonMaze21__/graphics/terrain/maze-floor2.png",
                 count = 4,
                 size = 2
 
             },
             {
-                picture = "__RibbonMaze__/graphics/terrain/maze-floor4.png",
+                picture = "__RibbonMaze21__/graphics/terrain/maze-floor4.png",
                 count = 4,
                 size = 4,
             },
         },
-
-
-
         inner_corner =
         {
-            picture = "__RibbonMaze__/graphics/terrain/maze-inner-corner.png",
-            count = 6
+            picture = "__RibbonMaze21__/graphics/terrain/maze-inner-corner.png",
+            count = 6,
         },
         outer_corner =
         {
-            picture = "__RibbonMaze__/graphics/terrain/maze-outer-corner.png",
-            count = 6
+            picture = "__RibbonMaze21__/graphics/terrain/maze-outer-corner.png",
+            count = 6,
         },
         side =
         {
-            picture = "__RibbonMaze__/graphics/terrain/maze-side.png",
-            count = 8
+            picture = "__RibbonMaze21__/graphics/terrain/maze-side.png",
+            count = 8,
         }
     }
 end

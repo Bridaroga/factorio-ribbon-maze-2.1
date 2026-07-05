@@ -20,32 +20,35 @@
    SOFTWARE.
 --]]
 
-data:extend {{
-    type = "recipe",
-    name = "wood-kiln-drying",
-    category = "smelting",
-    energy_required = 7.0,
-    enabled = false,
-    ingredients = {
-        {"green-wood", 1}
-    },
-    result= "wood",
-    subgroup="raw-material",
-    always_show_made_in = true,
-    main_product = "",
-    icons = {
-        {
-            icon = "__base__/graphics/icons/wood.png",
-            icon_size = 32,
-            shift = {-3, -3},
-            tint = {r=0.41, g=0.8, b=0.41, a=1.0},
+data:extend ({
+    {
+        type = "recipe",
+        name = "wood-kiln-drying",
+        categories = { "smelting" },
+        energy_required = 7.0,
+        enabled = false,
+        ingredients = {
+            { type = "item", name = "green-wood", amount = 1 },
         },
-        {
-            icon = "__base__/graphics/icons/wood.png",
-            icon_size = 32,
-            shift = {3, 3},
-        }
+        results = {
+            { type = "item", name = "wood", amount = 1 },
+        },
+        subgroup = "raw-material",
+        always_show_made_in = true,
+        main_product = "",
+        icons = {
+            {
+                icon = "__base__/graphics/icons/wood.png",
+                icon_size = 32,
+                shift = { -3, -3 },
+                tint = { r = 0.41, g = 0.8, b = 0.41, a = 1.0 },
+            },
+            {
+                icon = "__base__/graphics/icons/wood.png",
+                icon_size = 32,
+                shift = { 3, 3 },
+            },
+        },
+        order = "terraforming-wood-kiln-drying",
     },
-    order = "terraforming-wood-kiln-drying"
-}}
-
+})

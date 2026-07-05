@@ -32,11 +32,32 @@ require "control.config-control"
 
 require "control.maze-control"
 
-script.on_init(ribbonMazeInitHandler)
+-- script.on_init(ribbonMazeInitHandler)
+
+script.on_init(function()
+    local nauvis = game.surfaces["nauvis"]
+    if nauvis then
+        ribbonMazeInitHandler({surface_index = nauvis.index})
+    end
+end)
+
+-- Kjører når en ny planet blir generert (Fanger opp Vulcanus når du teleporterer)
+script.on_event(defines.events.on_surface_created, function(event)
+    ribbonMazeInitHandler(event)
+end)
+
+-- Sikkerhetsnett: Hvis du teleporterer og overflaten mot formodning mangler data
+script.on_event(defines.events.on_player_changed_surface, function(event)
+    local player = game.players[event.player_index]
+    if player and player.valid then
+        ribbonMazeInitHandler({surface_index = player.surface.index})
+    end
+end)
 
 script.on_event(defines.events.on_player_created, ribbonMazePlayerCreatedEventHander)
 script.on_event(defines.events.on_chunk_generated, ribbonMazeChunkGeneratedEventHandler)
 script.on_event(defines.events.on_research_finished, ribbonMazeResourceFinishedEventHandler)
+-- script.on_event(defines.events.on_surface_created, ribbonMazeInitHandler)
 
 ------------------------------------------------------------
 -- Require and register the terraforming control handlers --

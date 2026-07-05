@@ -23,7 +23,7 @@
 local terraformingArtilleryShell = table.deepcopy(data.raw.ammo["artillery-shell"])
 
 terraformingArtilleryShell.name = "maze-terraforming-artillery-shell"
-terraformingArtilleryShell.ammo_type.category = "maze-terraforming-artillery-shell"
+terraformingArtilleryShell.ammo_category = "maze-terraforming-artillery-shell"
 terraformingArtilleryShell.ammo_type.action.action_delivery.projectile = "maze-terraforming-artillery-projectile"
 
 

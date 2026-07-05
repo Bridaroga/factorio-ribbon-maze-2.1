@@ -26,12 +26,12 @@ data:extend{{
     icons = {
         {
             icon = "__base__/graphics/technology/kovarex-enrichment-process.png",
-            icon_size = 128
+            icon_size = 256,
         },
         {
-            icon = "__RibbonMaze__/graphics/technology/resource-scanning.png",
-            icon_size = 128
-        }
+            icon = "__RibbonMaze21__/graphics/technology/resource-scanning.png",
+            icon_size = 128,
+        },
     },
     effects =
     {

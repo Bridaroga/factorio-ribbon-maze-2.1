@@ -25,7 +25,7 @@
 --------------------------------------------------------
 
 local INFINITE_PREFIX = "infinite-"
-
+storage = storage
 local function infiniteOre(entityPrototype)
     if entityPrototype.type == "resource" and
             entityPrototype.name and
@@ -37,7 +37,7 @@ end
 
 local function deadEndEnabled(settingsGlobal, resource)
 
-    local entityPrototype = game.entity_prototypes[resource]
+    local entityPrototype = prototypes.entity[resource]
     if not entityPrototype then
         return false
     end
@@ -84,7 +84,7 @@ local function deadEndEnabled(settingsGlobal, resource)
 end
 
 local function guessAvoidStartingArea(resource)
-    local prototype = game.entity_prototypes[resource]
+    local prototype = prototypes.entity[resource]
     if prototype and prototype.autoplace_specification and prototype.autoplace_specification.peaks then
         -- look for a peak that reduces the influence in the starting area (as done with uranium, and certain angel's ores):
         for _,v in ipairs(prototype.autoplace_specification.peaks) do
@@ -97,7 +97,7 @@ local function guessAvoidStartingArea(resource)
 end
 
 local function guessMixedOreStrength(resource)
-    local prototype = game.entity_prototypes[resource]
+    local prototype = prototypes.entity[resource]
 
     if guessAvoidStartingArea(resource) then
         return 0
@@ -199,7 +199,7 @@ resourceCorridorDepths["tenemut"] = {2,4,6,8,10}
 -- mad clown's ores (use automatic guessing)
 
 local function guessResourceCorridorDepths(resource)
-    local prototype = game.entity_prototypes[resource]
+    local prototype = prototypes.entity[resource]
     if prototype and prototype.infinite_resource then
         return {8,10}
     elseif guessAvoidStartingArea(resource) then
@@ -219,7 +219,7 @@ local function fitDivisor30(startSize)
 end
 
 local function resourceAlignment(resource)
-    local prototype = game.entity_prototypes[resource]
+    local prototype = prototypes.entity[resource]
     local collisionBox = prototype.collision_box
     local sizeX = math.ceil(collisionBox.right_bottom.x - collisionBox.left_top.x)
     local sizeY = math.ceil(collisionBox.right_bottom.y - collisionBox.left_top.y)
@@ -252,9 +252,9 @@ local function resourceAlignment(resource)
     return {xPositions = xPositions, yPositions = yPositions}
 end
 
--- This function must be called createRibbonMazeConfig(). It is recommended to use only settings, but global/game are
+-- This function must be called createRibbonMazeConfig(). It is recommended to use only settings, but storage/game are
 -- also available. It can be relatively expensive because it is only run on settings/configuration change.
-function createRibbonMazeConfig()
+function createRibbonMazeConfig(surface)
 
     -- idea here is to access the settings table just once per event, for performance
     local settingsGlobal = settings.global
@@ -264,6 +264,16 @@ function createRibbonMazeConfig()
     waterTileReplacement["water-green"] = "red-desert-1"
     waterTileReplacement["deepwater"] = "red-desert-2"
     waterTileReplacement["deepwater-green"] = "red-desert-3"
+    waterTileReplacement["volcanic-ash-light"] = "volcanic-ash-dark"
+    waterTileReplacement["volcanic-ash-dark"]  = "volcanic-ash-dark"
+    waterTileReplacement["volcanic-soil-light"] = "volcanic-ash-dark"
+    waterTileReplacement["volcanic-soil-dark"]  = "volcanic-ash-dark"
+    waterTileReplacement["basalt-1"]           = "volcanic-ash-dark"
+    waterTileReplacement["basalt-2"]           = "volcanic-ash-dark"
+    waterTileReplacement["basalt-3"]           = "volcanic-ash-dark"
+    waterTileReplacement["basalt-chunk-vis"]   = "volcanic-ash-dark"
+    waterTileReplacement["lava"]               = "volcanic-ash-dark"
+    waterTileReplacement["lava-hot"]           = "volcanic-ash-dark"
 
     local resourceMatrix = {}
     resourceMatrix[2] = {}
@@ -319,7 +329,7 @@ function createRibbonMazeConfig()
 
     local fish = {}
 
-    for name,prototype in pairs(game.entity_prototypes) do
+    for name,prototype in pairs(prototypes.entity) do
         if prototype.type=="fish" then
             table.insert(fish, name)
         end
@@ -389,13 +399,13 @@ function createRibbonMazeConfig()
         end
     end
 
-    return {
+    local config2 = {
         -- True if terraforming prototypes are available, in which case entities and forces will be created to allow
         -- automated terraforming with artillery
         terraformingPrototypesEnabled = true,
 
         -- Surfaces for the mod to manage; by default only nauvis to avoid conflict with other mods
-        modSurfaces = {"nauvis"},
+        modSurfaces = {"nauvis","vulcanus","gleba","fulgora","aquilo"},
 
         -- Tile to use for water placed at the start of the maze ("row zero").
         waterTile = "water",
@@ -461,4 +471,12 @@ function createRibbonMazeConfig()
         fishPerChunk = 10,
         fishList = fish,
     }
+
+     if surface and surface.name == "vulcanus" then
+        config2.mazeWallTile = "basalt-1"   -- Gjør murene til mørk vulkanstein
+        config2.waterTile = "lava"          -- Valgfritt: Gjør vann-stier om til lava!
+    end
+
+    storage["ribbonMazeConfig"] = config2
+    return config2
 end

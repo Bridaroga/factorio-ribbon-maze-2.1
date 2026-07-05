@@ -24,12 +24,14 @@
 -- Settings and configuration caching --
 ----------------------------------------
 
+storage=storage
+
 function updateRibbonMazeConfig()
 
     --
     -- create config object
-    --
-    local config = createRibbonMazeConfig()
+    local surface = (event and event.surface) and event.surface.name or "nauvis"
+    local config = createRibbonMazeConfig(surface)
     if not config then
         error('createRibbonMazeConfig() returned nil')
     end
@@ -46,13 +48,13 @@ function updateRibbonMazeConfig()
     config.resourceMatrixMax = resourceMatrixMax
 
     --
-    -- assign to global
+    -- assign to storage
     --
-    global.ribbonMazeConfig = config
+    storage["ribbonMazeConfig"] = config 
     return config
 end
 
 -- Accessor function used throughout the mod:
 function ribbonMazeConfig()
-    return global.ribbonMazeConfig or updateRibbonMazeConfig()
+    return storage["ribbonMazeConfig"] or updateRibbonMazeConfig()
 end

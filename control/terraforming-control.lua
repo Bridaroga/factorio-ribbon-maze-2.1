@@ -26,6 +26,7 @@
 -- 111111
 -- 011110
 -- 001100
+storage = storage
 
 local circleTemplate = {{0, -2}, {0, 3}, {1, -2}, {1, 3}, {-2, 0}, {3, 0}, {-2, 1}, {3, 1}}
 for tileX = -1,2 do
@@ -60,6 +61,74 @@ local function terraformingEdge(config, surface, tileX, tileY)
 end
 
 function mazeTerraformingResultHandler(event)
+    -- Sikre at vi har en gyldig enhet å jobbe med før vi gjør tunge kall
+    if not (event.entity and event.entity.valid and event.entity.name == "maze-terraforming-result") then
+        return
+    end
+
+    local config = ribbonMazeConfig()
+    local surface = event.entity.surface
+    
+    -- Finn målet (bør være nøyaktig på samme posisjon)
+    local target = surface.find_entity("maze-terraforming-target", event.entity.position)
+    
+    if target and target.valid then
+        local position = target.position
+        local updatedTiles = {}
+        
+        -- 1. IDENTIFISER FLISER SOM SKAL ENDRES
+        for _, templatePos in pairs(circleTemplate) do
+            local tileX = position.x + templatePos[1]
+            local tileY = position.y + templatePos[2]
+            
+            if surface.get_tile(tileX, tileY).name == config.mazeWallTile then
+                table.insert(updatedTiles, {name = config.waterTile, position = {tileX, tileY}})
+            end
+        end
+
+        -- 2. OPPDATER FLISENE
+        -- VIKTIG: I Factorio 2.0 bør du sette de fire siste argumentene til 'true' 
+        -- for å tvinge gjennom vannplassering på planeter som Vulcanus, oppdatere kartet og fikse kanter.
+        surface.set_tiles(updatedTiles, true, true, true, true)
+
+        -- 3. HÅNDTER MANGROVER LANGS KANTENE
+        -- VIKTIG ENDRING: 'global' er erstattet med 'storage' i Factorio 2.0!
+        if storage.modSurfaceInfo and storage.modSurfaceInfo[surface.name] then
+            local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+            
+            for _, templatePos in pairs(circleTemplate) do
+                local tileX = position.x + templatePos[1]
+                local tileY = position.y + templatePos[2]
+                
+                if terraformingEdge(config, surface, tileX, tileY) then
+                    local randMangrove = Cmwc.randFraction(modSurfaceInfo.terraformingMangroveRng)
+                    
+                    if randMangrove <= config.mangroveDensity then
+                        -- Sjekk om posisjonen faktisk er ledig før vi spawner et tre (unngår krasj/overlapping)
+                        if surface.can_place_entity{name = "mangrove-avicennia", position = {tileX, tileY}} then
+                            if config.mangroveGreenRawRatio == 1 or randMangrove <= (config.mangroveDensity * config.mangroveGreenRawRatio) then
+                                surface.create_entity{name = "mangrove-avicennia", position = {tileX, tileY}}
+                            else
+                                surface.create_entity{name = "mangrove-bruguiera", position = {tileX, tileY}}
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        -- 4. RYDD OPP ENHETER
+        if event.entity.valid then
+            event.entity.destroy()
+        end
+
+        if target.valid then
+            target.destroy()
+        end
+    end
+end
+
+function mazeTerraformingResultHandler2(event)
 
     local config = ribbonMazeConfig()
 
@@ -79,7 +148,7 @@ function mazeTerraformingResultHandler(event)
 
             surface.set_tiles(updatedTiles)
 
-            local modSurfaceInfo = global.modSurfaceInfo[surface.name]
+            local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
             for _, templatePos in pairs(circleTemplate) do
                 local tileX = position.x+templatePos[1]
                 local tileY = position.y+templatePos[2]
@@ -109,7 +178,7 @@ function mazeTerraformingResultHandler(event)
 end
 
 function mazeTerraformingArtillerybuiltHandler(event)
-    local entity = event.created_entity
+    local entity = event.entity
 
     if entity.name == "maze-terraforming-artillery-turret" or entity.name == "maze-terraforming-artillery-wagon" then
         entity.force = "maze-terraforming-artillery"

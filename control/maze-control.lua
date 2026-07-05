@@ -24,6 +24,8 @@
 require("lib.cmwc")
 require("lib.maze")
 
+storage=storage
+
 function calculateMazePosition(config, modSurfaceInfo, coordinates)
 
     local topX
@@ -197,26 +199,37 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
 
     local width
 
-    -- swap X/Y for the purposes of maze position calculation, depending upon which direction is larger
-    if surface.map_gen_settings.height < surface.map_gen_settings.width then
-        width = surface.map_gen_settings.height
-        modSurfaceInfo.mazeInfo.swapXY = true
-    else
-        width = surface.map_gen_settings.width
+    -- Factorio 2.0 fiks: Hvis planeten har 0 i bredde/høyde, betyr det uendelig overflate (Space Age standard)
+    local map_width = surface.map_gen_settings.width or 0
+    local map_height = surface.map_gen_settings.height or 0
+
+    if map_width == 0 or map_height == 0 then
+        -- Tving uendelige planeter som Vulcanus til å bruke standard labyrint-bredde
+        width = config.mazeDefaultWidthChunks * 32
         modSurfaceInfo.mazeInfo.swapXY = false
+    else
+        -- Standard Nauvis-håndtering for endelige kart
+        if map_height < map_width then
+            width = map_height
+            modSurfaceInfo.mazeInfo.swapXY = true
+        else
+            width = map_width
+            modSurfaceInfo.mazeInfo.swapXY = false
+        end
+
+        -- Juster bredden for endelige kart (ignore chunks på sidene)
+        if width <= 0 or width >= 2000000 then
+            width = config.mazeDefaultWidthChunks * 32
+        elseif width > config.mazeMaxWidthChunks * 32 then
+            width = config.mazeMaxWidthChunks * 32
+        else
+            width = width - 64
+        end
     end
 
+    -- NÅ er det trygt å sjekke om bredden er stor nok, siden '0' har blitt rettet opp!
     if width < 160 then
         error('Maze too narrow, please pick a width or height of at least 160')
-    end
-
-    if width <= 0 or width >= 2000000 then
-        width = config.mazeDefaultWidthChunks * 32
-    elseif width > config.mazeMaxWidthChunks * 32 then
-        width = config.mazeMaxWidthChunks * 32
-    else
-        -- ignore a chunk either side on a finite map so that we don't get out-of-map in the maze
-        width = width - 64
     end
 
     local chunks = (width - width % 32) / 32
@@ -313,14 +326,14 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
         elseif resourceName == "water_" then
             -- do nothing
         else
-            local collisionBox = game.entity_prototypes[resourceName].collision_box
+            local collisionBox = prototypes.entity[resourceName].collision_box
             alignment = config.resourceAlignments[resourceName]
-            minimumAmount = game.entity_prototypes[resourceName].minimum_resource_amount or 100
+            minimumAmount = prototypes.entity[resourceName].minimum_resource_amount or 100
 
             if config.infiniteOres then
                 infiniteReplacement = config.infiniteOres[resourceName]
                 if infiniteReplacement then
-                    infiniteMinimumAmount = game.entity_prototypes[infiniteReplacement].minimum_resource_amount or 100
+                    infiniteMinimumAmount = prototypes.entity[infiniteReplacement].minimum_resource_amount or 100
                     local infiniteReplacementSize = math.floor(Maze.deadEnd(modSurfaceInfo.maze, mazePosition.x, mazePosition.y).yHighest / config.infiniteOreStretchFactor)
                     if infiniteReplacementSize < 1 then
                         infiniteReplacement = nil
@@ -398,7 +411,7 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
                                     local tileRandomAdjustment = Cmwc.randFractionRange(resource.rng, resource.minRand, 1.0)
                                     local amount = chunkRandomAdjustment * tileRandomAdjustment * resource.resourceAmount
                                     amount = amount * config.mixedResourcesMultiplier
-                                    minimumAmount = game.entity_prototypes[randomOre].minimum_resource_amount or 100
+                                    minimumAmount = prototypes.entity[randomOre].minimum_resource_amount or 100
                                     if amount < minimumAmount then
                                         amount = amount + minimumAmount
                                     end
@@ -511,7 +524,7 @@ function ribbonMazeChunkGeneratedEventHandler(event)
     local config = ribbonMazeConfig()
 
     local surface = event.surface
-    local modSurfaceInfo = global.modSurfaceInfo[surface.name]
+    local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
         return
@@ -615,7 +628,7 @@ function ribbonMazePlayerCreatedEventHander(event)
 
     local player = game.players[event.player_index]
     local surface = player.surface
-    local modSurfaceInfo = global.modSurfaceInfo[surface.name]
+    local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
         return
@@ -655,7 +668,7 @@ local function resourceScanning(research, resourceName)
     for _,surfaceName in pairs(config.modSurfaces) do
         local surface = game.surfaces[surfaceName]
         if surface then
-            local modSurfaceInfo = global.modSurfaceInfo[surfaceName]
+            local modSurfaceInfo = storage.modSurfaceInfo[surfaceName]
             if modSurfaceInfo then
                 for findY = 1, maxY, 2 do
                     for findX = 1, modSurfaceInfo.maze.numColumns, 2 do
@@ -706,7 +719,7 @@ function regenerateMaze(commandInfo)
     local config = ribbonMazeConfig()
     local playerForces = findPlayerForces()
     for _, surfaceName in pairs(config.modSurfaces) do
-        local modSurfaceInfo = global.modSurfaceInfo[surfaceName]
+        local modSurfaceInfo = storage.modSurfaceInfo[surfaceName]
         local surface = game.surfaces[surfaceName]
         modSurfaceInfo.masterRng = Cmwc.withSeed(Cmwc.randUint32(modSurfaceInfo.masterRng) + surface.map_gen_settings.seed)
         modSurfaceInfo.terraformingMangroveRng = Cmwc.deriveNew(modSurfaceInfo.masterRng)
@@ -763,26 +776,67 @@ end
 
 function ribbonMazeInitHandler()
 
-    local config = ribbonMazeConfig()
-
-    if config.terraformingPrototypesEnabled then
-        game.create_force("maze-terraforming-targets")
-        game.create_force("maze-terraforming-artillery")
-
-        game.forces["player"].set_friend("maze-terraforming-targets", true)
-        game.forces["maze-terraforming-targets"].set_friend("player", true)
-
-        game.forces["player"].set_friend("maze-terraforming-artillery", true)
-        game.forces["maze-terraforming-artillery"].set_friend("player", true)
-
-        game.forces["maze-terraforming-targets"].set_cease_fire("enemy", true)
-        game.forces["enemy"].set_cease_fire("maze-terraforming-targets", true)
-
-        game.forces["maze-terraforming-artillery"].set_cease_fire("maze-terraforming-targets", false)
+    local config = storage["ribbonMazeConfig"]
+    if(not config) then 
+        config = ribbonMazeConfig()
     end
 
-    global.modSurfaceInfo = global.modSurfaceInfo or {}
-    for _, v in pairs(config.modSurfaces) do
-        global.modSurfaceInfo[v] = global.modSurfaceInfo[v] or {}
+    if not config then
+        error('createRibbonMazeConfig() returned nil')
+    end
+
+    if config.terraformingPrototypesEnabled then
+        local maze_terraforming_targets_exists = false
+        local maze_terraforming_artillery_exists = false
+        for _, f in pairs(game.forces) do
+            if (f.name == "maze-terraforming-targets") then
+                maze_terraforming_targets_exists   = true
+            end
+            if (f.name == "maze-terraforming-artillery") then
+                maze_terraforming_artillery_exists = true
+            end
+        end
+        
+        -- when loading an map from 0.17, don't create forces again
+        if (not maze_terraforming_targets_exists and not maze_terraforming_artillery_exists) then
+            game.create_force("maze-terraforming-targets")
+            game.create_force("maze-terraforming-artillery")
+
+            game.forces["player"].set_friend("maze-terraforming-targets", true)
+            game.forces["maze-terraforming-targets"].set_friend("player", true)
+
+            game.forces["player"].set_friend("maze-terraforming-artillery", true)
+            game.forces["maze-terraforming-artillery"].set_friend("player", true)
+
+            game.forces["maze-terraforming-targets"].set_cease_fire("enemy", true)
+            game.forces["enemy"].set_cease_fire("maze-terraforming-targets", true)
+
+            game.forces["maze-terraforming-artillery"].set_cease_fire("maze-terraforming-targets", false)
+        end
+    end
+
+    storage.modSurfaceInfo = storage.modSurfaceInfo or {}
+    -- storage.modSurfaceInfo[config.modSurfaces[1]] = {}
+    local surface_name = config.modSurfaces[1] -- Standard fallback (Nauvis)
+    
+    if event and event.surface_index then
+        local surface = game.surfaces[event.surface_index]
+        if surface then
+            surface_name = surface.name
+        end
+    end
+
+    -- Initialiser overflatens data hvis den ikke finnes fra før
+    if not storage.modSurfaceInfo[surface_name] then
+        local surface_index = event and event.surface_index or game.surfaces["nauvis"].index
+
+        -- 2. Hent seed basert på den indeksen
+        local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
+
+        -- 3. Opprett RNG-generatoren med det trygge frøet
+        storage.modSurfaceInfo[surface_name] = {
+            terraformingMangroveRng = Cmwc.withSeed(surface_seed) 
+        }
+        game.print("Ribbon Maze data opprettet for overflate: " .. surface_name)
     end
 end

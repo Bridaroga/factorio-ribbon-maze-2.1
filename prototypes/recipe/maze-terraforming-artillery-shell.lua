@@ -25,7 +25,7 @@ data:extend{{
     name = "maze-terraforming-artillery-shell",
     enabled = false,
     energy_required = 30,
-    category = "crafting-with-fluid",
+    categories = { "crafting-with-fluid" },
     always_show_made_in = true,
     ingredients = {
         {type="item", name="landfill", amount=16},
@@ -35,5 +35,5 @@ data:extend{{
         {type="item", name="storage-tank", amount=1},
         {type="fluid", name="steam", amount=25000},
     },
-    result = "maze-terraforming-artillery-shell"
+    results = {{type="item", name="maze-terraforming-artillery-shell", amount=1}},
 }}

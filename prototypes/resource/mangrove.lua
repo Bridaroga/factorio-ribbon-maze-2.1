@@ -23,15 +23,16 @@
 data:extend {{
     type = "resource",
     name = "mangrove-avicennia",
+   
     category = "mangrove",
     icon = "__base__/graphics/icons/tree-08.png",
     icon_size = 32,
     flags = {"placeable-neutral"},
     order="a-b-mangrove-avicennia",
-    collision_mask = {"resource-layer", "ground-tile"},
+    collision_mask = {layers={item= true, resource=true}},
     collision_box = {{ -0.1, -0.1}, {0.1, 0.1}},
     selection_box = {{ -0.5, -0.5}, {0.5, 0.5}},
-    emissions_per_second = -0.0060,
+    emissions_per_second = {["pollution"] = -0.0060},
     infinite = true,
     highlight = true,
     minimum = 100,
@@ -42,7 +43,7 @@ data:extend {{
     tree_removal_max_distance = 1,
     minable = {
         mining_time = 10,
-        result = "green-wood",
+        results = {{type="item", name="green-wood", amount_min=1, amount_max=1}},
         count = 1,
         mining_particle = "wooden-particle",
         hardness = 0.5
@@ -50,7 +51,7 @@ data:extend {{
     stage_counts = {0},
     stages = {
         sheet = {
-            filename = "__base__/graphics/entity/tree/green-coral/green-coral-01.png",
+            filename = "__RibbonMaze21__/graphics/entity/green-coral-01.png",
             priority = "extra-high",
             width = 58,
             height = 69,
@@ -70,10 +71,10 @@ data:extend {{
     icon_size = 32,
     flags = {"placeable-neutral"},
     order="a-b-mangrove-bruguiera",
-    collision_mask = {"resource-layer", "ground-tile"},
+    collision_mask = {layers={item= true, resource=true}},
     collision_box = {{ -0.1, -0.1}, {0.1, 0.1}},
     selection_box = {{ -0.5, -0.5}, {0.5, 0.5}},
-    emissions_per_second = -0.0060,
+    emissions_per_second = {["pollution"] = -0.0060},
     infinite = true,
     highlight = true,
     minimum = 100,
@@ -84,7 +85,7 @@ data:extend {{
     tree_removal_max_distance = 1,
     minable = {
         mining_time = 10,
-        result = "wood",
+        results = {{type="item", name="wood", amount_min=1, amount_max=1}},
         count = 1,
         mining_particle = "wooden-particle",
         hardness = 0.5
@@ -92,7 +93,7 @@ data:extend {{
     stage_counts = {0},
     stages = {
         sheet = {
-            filename = "__base__/graphics/entity/tree/green-coral/green-coral-06.png",
+            filename = "__RibbonMaze21__/graphics/entity/green-coral-06.png",
             priority = "extra-high",
             width = 67,
             height = 71,

@@ -20,28 +20,26 @@
    SOFTWARE.
 --]]
 
-data:extend{{
-    type = "technology",
-    name = "wood-kiln-drying",
-    icon_size = 128,
-    icon = "__RibbonMaze__/graphics/technology/wood-kiln-drying.png",
-    effects =
+data:extend({
     {
-        {
-            type = "unlock-recipe",
-            recipe = "wood-kiln-drying"
+        type = "technology",
+        name = "wood-kiln-drying",
+        icon = "__RibbonMaze21__/graphics/technology/wood-kiln-drying.png",
+        icon_size = 128,
+        prerequisites = { "automation-science-pack" },
+        unit = {
+            time = 30,
+            count = 50,
+            ingredients = {
+                { "automation-science-pack", 1 },
+            },
         },
-    },
-    unit =
-    {
-        count = 50,
-        ingredients =
-        {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
+        effects = {
+            {
+                type = "unlock-recipe",
+                recipe = "wood-kiln-drying",
+            },
         },
-        time = 30
+        order = "d-e-f",
     },
-    order = "d-e-f"
-}
-}
+})

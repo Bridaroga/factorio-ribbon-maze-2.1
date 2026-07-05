@@ -29,13 +29,13 @@ data:extend{
         item_product = "maze-terraforming-artillery-shell",
         icons = {
             {
+                icon = "__RibbonMaze21__/graphics/achievements/terraforming.png",
+                icon_size = 128,
+            },
+            {
                 icon = "__base__/graphics/achievement/trans-factorio-express.png",
                 icon_size = 128,
                 tint = {r=0, b=1, g=0, a=0.8}
-            },
-            {
-                icon = "__RibbonMaze__/graphics/achievements/terraforming.png",
-                icon_size = 128,
             },
         },
         limited_to_one_game = true
@@ -48,7 +48,7 @@ data:extend{
         amount = 1000,
         icons = {
             {
-                icon = "__RibbonMaze__/graphics/achievements/waterworld.png",
+                icon = "__RibbonMaze21__/graphics/achievements/waterworld.png",
                 icon_size = 128,
             },
             {

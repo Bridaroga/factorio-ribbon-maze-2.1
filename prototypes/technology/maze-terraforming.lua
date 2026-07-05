@@ -23,18 +23,16 @@
 data:extend{{
     type = "technology",
     name = "maze-terraforming",
-    icon_size = 128,
     icons = {{
         icon = "__base__/graphics/technology/artillery.png",
-        tint = {r=0.21, g=0.41, b=0.9, a=1.0},
+        icon_size = 256,
+        tint = { r=0.21, g=0.41, b=0.9, a=1.0 },
     }},
-    effects =
-    {
--- wagon does not fire (probably due to the loco's force), so disabling for now
---        {
---            type = "unlock-recipe",
---            recipe = "maze-terraforming-artillery-wagon"
---        },
+    effects = {
+        {
+            type = "unlock-recipe",
+            recipe = "maze-terraforming-artillery-wagon"
+        },
         {
             type = "unlock-recipe",
             recipe = "maze-terraforming-artillery-turret"
@@ -45,8 +43,7 @@ data:extend{{
         },
     },
     prerequisites = {"atomic-bomb", "artillery", "landfill", "cliff-explosives"},
-    unit =
-    {
+    unit = {
         ingredients =
         {
             {"automation-science-pack", 1},
@@ -56,7 +53,7 @@ data:extend{{
             {"utility-science-pack", 1}
         },
         time = 30,
-        count = 2000
+        count = 5000
     },
     order = "d-e-f"
 }

@@ -26,14 +26,12 @@ terraformingArtilleryWagon.name = "maze-terraforming-artillery-wagon"
 terraformingArtilleryWagon.gun = "maze-terraforming-artillery-cannon"
 terraformingArtilleryWagon.minable.result = "maze-terraforming-artillery-wagon"
 
-for _,v in pairs(terraformingArtilleryWagon.cannon_barrel_pictures.layers) do
+for _,v in pairs(terraformingArtilleryWagon.cannon_barrel_pictures.rotated.layers) do
     v.tint = {r=0.21, g=0.41, b=0.9, a=1.0 }
-    v.hr_version.tint = {r=0.21, g=0.41, b=0.9, a=1.0}
 end
 
-for _,v in pairs(terraformingArtilleryWagon.cannon_base_pictures.layers) do
+for _,v in pairs(terraformingArtilleryWagon.cannon_base_pictures.rotated.layers) do
     v.tint = {r=0.21, g=0.41, b=0.9, a=1.0 }
-    v.hr_version.tint = {r=0.21, g=0.41, b=0.9, a=1.0}
 end
 
 data:extend{terraformingArtilleryWagon}

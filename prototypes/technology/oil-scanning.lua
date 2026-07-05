@@ -26,10 +26,10 @@ data:extend{{
     icons = {
         {
             icon = "__base__/graphics/technology/oil-gathering.png",
-            icon_size = 128
+            icon_size = 256
         },
         {
-            icon = "__RibbonMaze__/graphics/technology/resource-scanning.png",
+            icon = "__RibbonMaze21__/graphics/technology/resource-scanning.png",
             icon_size = 128
         }
     },

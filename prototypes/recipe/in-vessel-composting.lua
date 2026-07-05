@@ -20,33 +20,36 @@
    SOFTWARE.
 --]]
 
-data:extend {{
-    type = "recipe",
-    name = "in-vessel-composting",
-    category = "chemistry",
-    energy_required = 60,
-    enabled = false,
-    always_show_made_in = true,
-    ingredients =
+data:extend ({
     {
-        {"composting-greens", 150},
-        {"composting-browns", 100}
+        type = "recipe",
+        name = "in-vessel-composting",
+        categories = { "chemistry" },
+        energy_required = 60,
+        enabled = false,
+        always_show_made_in = true,
+        allow_productivity = true,
+        ingredients =
+        {
+            {type="item", name="composting-greens", amount=150},
+            {type="item", name="composting-browns", amount=100},
+        },
+        results = {
+            {type="item", name="compost", amount=200},
+            {type="fluid", name="water", amount=500, temperature=65},
+        },
+        subgroup = "intermediate-product",
+        icons = {{
+            icon = "__RibbonMaze21__/graphics/icons/compost.png",
+            icon_size = 32,
+        }},
+        crafting_machine_tint =
+        {
+            primary = {r = 0.25, g = 0.1, b = 0.051, a = 0.000},
+            secondary = {r = 0.812, g = 1.000, b = 0.000, a = 0.000}, -- #cfff0000
+            tertiary = {r = 0.960, g = 0.806, b = 0.000, a = 0.000}, -- #f4cd0000
+        },
+        order = "terraforming-in-vessel-composting",
     },
-    results = {
-        {type="item", name="compost", amount=200},
-        {type="fluid", name="water", amount=500, temperature=65},
-    },
-    subgroup = "intermediate-product",
-    icons = {{
-        icon = "__RibbonMaze__/graphics/icons/compost.png",
-        icon_size = 32,
-    }},
-    crafting_machine_tint =
-    {
-        primary = {r = 0.25, g = 0.1, b = 0.051, a = 0.000},
-        secondary = {r = 0.812, g = 1.000, b = 0.000, a = 0.000}, -- #cfff0000
-        tertiary = {r = 0.960, g = 0.806, b = 0.000, a = 0.000}, -- #f4cd0000
-    },
-    order = "terraforming-in-vessel-composting"
-}}
+})
 

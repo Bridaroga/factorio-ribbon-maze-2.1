@@ -1,11 +1,11 @@
 {
-  "name": "RibbonMaze",
-  "version": "0.7.6",
-  "title": "Ribbon Maze",
+  "name": "RibbonMaze21",
+  "version": "2.1.23",
+  "title": "Ribbon Maze (fix for 2.1)",
   "author": "H8UL",
-  "contact": "h8ul.mods@gmail.com",
+  "contact": "h8ul.mods@gmail.com, kajacx@gmail.com",
   "homepage": "https://mods.factorio.com/user/h8ul",
-  "factorio_version": "0.17",
-  "dependencies": ["base >= 0.17.38"],
-  "description": "The maze itself is destined to be automated."
+  "factorio_version": "2.1",
+  "dependencies": ["base >= 2.1", "! quality", "! recycler", "! space-age"],
+  "description": "The maze itself is destined to be automated. Original mod by H8UL. Fixed for 1.1 by kajacx. Fixed for 2.0 by Knusan. Fixed for 2.1 by Raphal."
 }

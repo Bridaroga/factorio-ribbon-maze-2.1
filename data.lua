@@ -26,6 +26,7 @@ require('prototypes.technology.uranium-scanning')
 
 -- mangroves
 
+-- require('prototypes.categories.wood-kiln-drying')
 require('prototypes.categories.mangrove')
 require('prototypes.item.green-wood')
 require('prototypes.recipe.wood-kiln-drying')
@@ -62,7 +63,6 @@ require('prototypes.entity.maze-terraforming-result')
 require('prototypes.entity.maze-terraforming-target')
 require('prototypes.entity.maze-terraforming-turret')
 
-
 require('prototypes.item.maze-terraforming-artillery-cannon')
 require('prototypes.item.maze-terraforming-artillery-shell')
 require('prototypes.item.maze-terraforming-artillery-turret')
@@ -70,10 +70,9 @@ require('prototypes.item.maze-terraforming-artillery-turret')
 require('prototypes.recipe.maze-terraforming-artillery-shell')
 require('prototypes.recipe.maze-terraforming-artillery-turret')
 
--- wagon does not fire (probably due to the loco's force), so disabling for now
---require('prototypes.entity.maze-terraforming-wagon')
---require('prototypes.item.maze-terraforming-artillery-wagon')
---require('prototypes.recipe.maze-terraforming-artillery-wagon')
+require('prototypes.entity.maze-terraforming-wagon')
+require('prototypes.item.maze-terraforming-artillery-wagon')
+require('prototypes.recipe.maze-terraforming-artillery-wagon')
 
 require('prototypes.technology.maze-terraforming')
 

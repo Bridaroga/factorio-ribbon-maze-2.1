@@ -21,9 +21,12 @@
 --]]
 
 
-data:extend{
+data:extend({
     {
         type = "ammo-category",
-        name = "maze-terraforming-artillery-shell"
-    }
-}
+        ammo_category = "maze-terraforming-artillery-shell",
+        name = "maze-terraforming-artillery-shell",
+        icon = "__base__/graphics/icons/ammo-category/artillery-shell.png",
+        subgroup = "ammo-category",
+    },
+})

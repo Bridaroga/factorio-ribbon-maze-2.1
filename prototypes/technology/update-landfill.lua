@@ -22,7 +22,7 @@
 
 local landfillTech = data.raw.technology["landfill"]
 
-landfillTech.prerequisites = {"nuclear-power", "in-vessel-composting"}
+landfillTech.prerequisites = { "nuclear-power", "in-vessel-composting", "production-science-pack" }
 
 landfillTech.unit = {
     ingredients = {

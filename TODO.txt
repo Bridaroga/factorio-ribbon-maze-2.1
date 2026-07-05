@@ -1,0 +1,14 @@
+#TODO
+|
+|-> Unknown key: "mod-setting-name.ribbonMazeConfig"	{}
+|-> Compatibilidad con Reciclador.
+|-> Compatibilidad con Calidad.
+|-> Compatibilidad con Space Age.
+|-> Apuntado manual no funciona.
+|-> El agua a 65 °C no tiene utilidad.
+|-> Implementar maze normal.
+|-> El relleno no destruye los manglares.
+|-> Cambiar "Probabilidad de bucles" a algo que sea de 1 a 100 (0.00 - 1.00)
+|-> No se puede "cortar" la artillería.
+|-> Super-pegar no elimina la artillería.
+|-> Ver si se puede cambiar el sentido del ribbon world.

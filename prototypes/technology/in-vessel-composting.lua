@@ -24,7 +24,7 @@ data:extend{{
     type = "technology",
     name = "in-vessel-composting",
     icon_size = 128,
-    icon = "__RibbonMaze__/graphics/technology/in-vessel-composting.png",
+    icon = "__RibbonMaze21__/graphics/technology/in-vessel-composting.png",
     effects =
     {
         {
@@ -50,6 +50,10 @@ data:extend{{
         {
             type = "unlock-recipe",
             recipe = "small-electric-pole-shredding"
+        },
+        {
+            type = "unlock-recipe",
+            recipe = "raw-fish-shredding"
         },
     },
     prerequisites = {"advanced-material-processing-2", "wood-kiln-drying"},

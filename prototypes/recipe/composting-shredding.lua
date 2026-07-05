@@ -20,20 +20,20 @@
    SOFTWARE.
 --]]
 
-data:extend {
+data:extend ({
     {
         type = "recipe",
         name = "raw-wood-shredding",
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"wood", 10},
+        allow_productivity = true,
+        ingredients = {
+            { type = "item", name = "wood", amount = 10 },
         },
         results = {
-            {type="item", name="composting-greens", amount=1},
-            {type="item", name="composting-browns", amount=9},
+            { type = "item", name = "composting-greens", amount = 1 },
+            { type = "item", name = "composting-browns", amount = 9 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -43,11 +43,11 @@ data:extend {
                 icon_size = 32,
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-raw-wood"
+        order = "terraforming-shredding-raw-wood",
     },
 
     {
@@ -56,13 +56,13 @@ data:extend {
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"green-wood", 10},
+        allow_productivity = true,
+        ingredients = {
+            { type = "item", name = "green-wood", amount = 10 },
         },
         results = {
-            {type="item", name="composting-greens", amount=9},
-            {type="item", name="composting-browns", amount=1},
+            { type = "item", name = "composting-greens", amount = 9 },
+            { type = "item", name = "composting-browns", amount = 1 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -70,14 +70,14 @@ data:extend {
             {
                 icon = "__base__/graphics/icons/wood.png",
                 icon_size = 32,
-                tint = {r=0.41, g=0.8, b=0.41, a=1.0},
+                tint = { r = 0.41, g = 0.8, b = 0.41, a = 1.0 },
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-green-wood"
+        order = "terraforming-shredding-green-wood",
     },
 
     {
@@ -86,12 +86,12 @@ data:extend {
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"wood", 2},
+        allow_productivity = true,
+        ingredients = {
+            { type = "item", name = "wood", amount = 2 },
         },
         results = {
-            {type="item", name="composting-browns", amount=1}
+            { type = "item", name = "composting-browns", amount = 1 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -101,25 +101,25 @@ data:extend {
                 icon_size = 32,
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-wood"
+        order = "terraforming-shredding-wood",
     },
 
     {
         type = "recipe",
         name = "wooden-chest-shredding",
+        allow_productivity = true,
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"wooden-chest", 2},
+        ingredients = {
+            { type = "item", name = "wooden-chest", amount = 2 },
         },
         results = {
-            {type="item", name="composting-browns", amount=1}
+            { type = "item", name = "composting-browns", amount = 1 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -129,11 +129,11 @@ data:extend {
                 icon_size = 32,
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-wood"
+        order = "terraforming-shredding-wood",
     },
 
     {
@@ -142,12 +142,12 @@ data:extend {
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"small-electric-pole", 2},
+        allow_productivity = true,
+        ingredients = {
+            { type = "item", name = "small-electric-pole", amount = 2 },
         },
         results = {
-            {type="item", name="composting-browns", amount=1}
+            { type = "item", name = "composting-browns", amount = 1 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -157,11 +157,11 @@ data:extend {
                 icon_size = 32,
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-wood"
+        order = "terraforming-shredding-wood",
     },
 
     {
@@ -170,12 +170,12 @@ data:extend {
         energy_required = 0.2,
         enabled = false,
         always_show_made_in = true,
-        ingredients =
-        {
-            {"raw-fish", 1},
+        allow_productivity = true,
+        ingredients = {
+            { type = "item", name = "raw-fish", amount = 1 },
         },
         results = {
-            {type="item", name="composting-greens", amount=1},
+            { type = "item", name = "composting-greens", amount = 1 },
         },
         main_product = "",
         subgroup = "intermediate-product",
@@ -185,10 +185,10 @@ data:extend {
                 icon_size = 32,
             },
             {
-                icon = "__RibbonMaze__/graphics/icons/compost-shredding.png",
+                icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
                 icon_size = 32,
             },
         },
-        order = "terraforming-shredding-raw-fish"
-    }
-}
+        order = "terraforming-shredding-raw-fish",
+    },
+})

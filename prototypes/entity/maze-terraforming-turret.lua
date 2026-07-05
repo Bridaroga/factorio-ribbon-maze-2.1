@@ -28,13 +28,10 @@ terraformingArtilleryTurret.minable.result = "maze-terraforming-artillery-turret
 
 for _,v in pairs(terraformingArtilleryTurret.cannon_barrel_pictures.layers) do
     v.tint = {r=0.21, g=0.41, b=0.9, a=1.0 }
-    v.hr_version.tint = {r=0.21, g=0.41, b=0.9, a=1.0}
 end
 
 for _,v in pairs(terraformingArtilleryTurret.cannon_base_pictures.layers) do
     v.tint = {r=0.21, g=0.41, b=0.9, a=1.0 }
-    v.hr_version.tint = {r=0.21, g=0.41, b=0.9, a=1.0}
 end
-
 
 data:extend{terraformingArtilleryTurret}

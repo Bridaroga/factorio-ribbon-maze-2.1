@@ -20,20 +20,23 @@
    SOFTWARE.
 --]]
 
-data:extend {{
-    type = "recipe",
-    name = "geocomposite",
-    category = "chemistry",
-    energy_required = 1.25,
-    enabled = false,
-    always_show_made_in = true,
-    ingredients =
+data:extend ({
     {
-        {"wood", 2},
-        {"plastic-bar", 2},
-        {"refined-concrete", 1},
-        {type="fluid", name="steam", amount=100, minimum_temperature=500}
+        type = "recipe",
+        name = "geocomposite",
+        categories = { "chemistry" },
+        energy_required = 1.25,
+        enabled = false,
+        always_show_made_in = true,
+        allow_productivity = true,
+        ingredients =
+        {
+            {type ="item", name="wood", amount=2},
+            {type ="item", name="plastic-bar", amount=2},
+            {type ="item", name="refined-concrete", amount=1},
+            {type="fluid", name="steam", amount=100, minimum_temperature=500}
+        },
+        results={{type="item",name="geocomposite", amount=1}},
+        order = "terraforming-geocomposite",
     },
-    result= "geocomposite",
-    order = "terraforming-geocomposite"
-}}
+})

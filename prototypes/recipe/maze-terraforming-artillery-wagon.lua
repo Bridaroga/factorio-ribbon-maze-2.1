@@ -29,5 +29,5 @@ data:extend{{
         {type="item", name="artillery-wagon", amount=1},
         {type="item", name="radar", amount=1},
     },
-    result = "maze-terraforming-artillery-wagon"
+    results ={{type="item", name="maze-terraforming-artillery-wagon", amount=1}},
 }}

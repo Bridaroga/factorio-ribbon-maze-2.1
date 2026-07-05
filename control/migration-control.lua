@@ -24,7 +24,7 @@ local function fixes_0_6_7()
     local config = ribbonMazeConfig()
 
     for _,surface in pairs(game.surfaces) do
-        local modSurfaceInfo = global.modSurfaceInfo[surface.name]
+        local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
         if modSurfaceInfo then
             for chunkPosition in surface.get_chunks() do
                 local chunkTilePosition = {x = chunkPosition.x*32, y=chunkPosition.y*32}

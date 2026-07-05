@@ -42,15 +42,14 @@ data:extend{
         type = "int-setting",
         name = "ribbon-maze-clear-start",
         setting_type = "runtime-global",
-        default_value = 0,
+        default_value = 1,
         order="rb-c",
     },
     {
         type = "bool-setting",
         name = "ribbon-maze-chart-nearby-crude-oil",
         setting_type = "runtime-global",
-        default_value = false
-        ,
+        default_value = false,
         order="rb-d",
     },
     {
@@ -89,7 +88,7 @@ data:extend{
         setting_type = "runtime-global",
         minimum_value = 0.01,
         maximum_value = 1000,
-        default_value = 1,
+        default_value = 3,
         order="rb-resource-stretch-factor",
     },
     {
@@ -207,5 +206,17 @@ data:extend{
         default_value = 3,
         order="rb-v-c-m",
     },
+    {
+        type = "string-setting",
+        name = "ribbonMazeConfig",
+        setting_type = "startup",
+        default_value = "{}"
+    },
+    -- {
+    --     type = "string-setting",
+    --     name = "modSurfaceInfo",
+    --     setting_type = "runtime-global",
+    --     default_value = "{}"
+    -- }
 }
 

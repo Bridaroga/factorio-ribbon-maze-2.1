@@ -20,7 +20,9 @@
    SOFTWARE.
 --]]
 
-data:extend{{
-    type = "resource-category",
-    name = "mangrove"
-}}
+data:extend({
+	{
+		type = "resource-category",
+		name = "mangrove",
+	},
+})
