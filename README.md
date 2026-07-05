@@ -36,4 +36,10 @@ Terrain graphics for maze adapted from the MIT-license More Floors mod by Tone
 
 Thanks to illiander42 for various modifications.
 
+Thanks to H8UL for create this mod.
+
+Thanks to kajacx for the 1.1 fix.
+
+Thanks to Knusan for the 2.0 fix.
+
 Thanks also to Factorio staff and forum users for their help and support!
