@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.1.23
+Version: 2.1.29
 Date: 05. 07. 2026
   Minor Features:
     - Intermediate products now have productivity.
@@ -30,6 +30,7 @@ Date: 05. 07. 2026
     - Translate to es-ES (español de España).
   Info:
     - Updated thumbnail.
+    - Updated mod description.
     - All recipes are verified and working, but water at 65 °C have no use, maybe deleting later.
     - TODO: Compatibility with [Quality] mod.
     - TODO: Compatibility with [Recycler] mod.
