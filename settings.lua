@@ -210,7 +210,8 @@ data:extend{
         type = "string-setting",
         name = "ribbonMazeConfig",
         setting_type = "startup",
-        default_value = "{}"
+        default_value = "{}",
+        hidden = true,
     },
     -- {
     --     type = "string-setting",
