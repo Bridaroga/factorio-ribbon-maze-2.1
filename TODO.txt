@@ -1,6 +1,6 @@
 #TODO
 |
-|-> Unknown key: "mod-setting-name.ribbonMazeConfig"	{}
+|-> Shortcut e item ya funcionan, pero no funciona el disparar la artillería.
 |-> Compatibilidad con Reciclador.
 |-> Compatibilidad con Calidad.
 |-> Compatibilidad con Space Age.
