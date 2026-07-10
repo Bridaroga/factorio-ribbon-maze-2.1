@@ -22,7 +22,7 @@
 
 local terraformingArtilleryProjectile = table.deepcopy(data.raw["artillery-projectile"]["artillery-projectile"])
 
-terraformingArtilleryProjectile.name = "maze-terraforming-artillery-projectile"
+terraformingArtilleryProjectile.name = "maze-terraforming-projectile"
 terraformingArtilleryProjectile.map_color = {r=0, g=0, b=1}
 terraformingArtilleryProjectile.action = {
     type = "direct",

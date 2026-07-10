@@ -20,12 +20,28 @@
    SOFTWARE.
 --]]
 
-local terraformingArtilleryShell = table.deepcopy(data.raw.ammo["artillery-shell"])
+local terraformingArtilleryShell = table.deepcopy(data.raw["ammo"]["artillery-shell"])
 
 terraformingArtilleryShell.name = "maze-terraforming-artillery-shell"
-terraformingArtilleryShell.ammo_category = "maze-terraforming-artillery-shell"
-terraformingArtilleryShell.ammo_type.action.action_delivery.projectile = "maze-terraforming-artillery-projectile"
-
+terraformingArtilleryShell.ammo_category = "maze-terraforming-artillery-shell-category"
+terraformingArtilleryShell.ammo_type.action.action_delivery.projectile = "maze-terraforming-projectile"
+--[[terraformingArtilleryShell.ammo_type = {
+    target_type = "position",
+    action = {
+        type = "direct",
+        action_delivery = {
+            type = "artillery",
+            projectile = "maze-terraforming-projectile",
+            starting_speed = 1,
+            direction_deviation = 0,
+            range_deviation = 0,
+            source_effects = {
+                type = "create-explosion",
+                entity_name = "artillery-cannon-muzzle-flash"
+            }
+        }
+    }
+}]]
 
 terraformingArtilleryShell.icon = nil
 terraformingArtilleryShell.icons = {{
