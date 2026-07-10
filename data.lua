@@ -62,10 +62,12 @@ require('prototypes.entity.maze-terraforming-projectile')
 require('prototypes.entity.maze-terraforming-result')
 require('prototypes.entity.maze-terraforming-target')
 require('prototypes.entity.maze-terraforming-turret')
+--require('prototypes.entity.maze-terraforming-artillery-flare')
 
 require('prototypes.item.maze-terraforming-artillery-cannon')
 require('prototypes.item.maze-terraforming-artillery-shell')
 require('prototypes.item.maze-terraforming-artillery-turret')
+--require('prototypes.item.maze-terraforming-artillery-targeting-remote')
 
 require('prototypes.recipe.maze-terraforming-artillery-shell')
 require('prototypes.recipe.maze-terraforming-artillery-turret')
@@ -79,3 +81,7 @@ require('prototypes.technology.maze-terraforming')
 -- achievements
 
 require('prototypes.achievements')
+
+-- shortcuts
+
+--require('prototypes.shortcuts')
