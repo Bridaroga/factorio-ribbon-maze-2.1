@@ -1,4 +1,27 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.
+Date: xx. 07. 2026
+  Minor Features:
+    - xxxx.
+  Changes:
+    - Changed category name of [Maze terraforming artillery shell].
+    - Changed internal name of [Maze terraforming artillery projectile].
+  Bugfixes:
+    - Hide [ribbonMazeConfig] setting.
+    - Fixed [Maze width in blocks] min-max values.
+  Translation:
+    - xxxx.
+  Info:
+    - xxxx.
+    - TODO: Compatibility with [Quality] mod.
+    - TODO: Compatibility with [Recycler] mod.
+    - TODO: Compatibility with [Space Age] mod.
+    - TODO: Landfill are not destroying mangrove.
+    - TODO: Can't cut or "Super forced building" Maze terraforming artillery turret.
+    - TODO: Manual aiming: Shortcut to [targeting remote] item added, but remote not working.
+  Compatibility:
+    - xxxx.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.29
 Date: 05. 07. 2026
   Minor Features:
