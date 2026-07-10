@@ -23,7 +23,7 @@
 local terraformingArtilleryCannon = table.deepcopy(data.raw.gun["artillery-wagon-cannon"])
 
 terraformingArtilleryCannon.name = "maze-terraforming-artillery-cannon"
-terraformingArtilleryCannon.attack_parameters.ammo_category ="maze-terraforming-artillery-shell"
+terraformingArtilleryCannon.attack_parameters.ammo_category ="maze-terraforming-artillery-shell-category"
  
 terraformingArtilleryCannon.icon = nil
 terraformingArtilleryCannon.icons = {{

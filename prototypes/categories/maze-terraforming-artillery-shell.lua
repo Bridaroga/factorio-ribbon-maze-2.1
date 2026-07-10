@@ -24,8 +24,8 @@
 data:extend({
     {
         type = "ammo-category",
-        ammo_category = "maze-terraforming-artillery-shell",
-        name = "maze-terraforming-artillery-shell",
+        --ammo_category = "maze-terraforming-artillery-shell",
+        name = "maze-terraforming-artillery-shell-category",
         icon = "__base__/graphics/icons/ammo-category/artillery-shell.png",
         subgroup = "ammo-category",
     },
