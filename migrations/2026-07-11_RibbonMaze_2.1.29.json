@@ -1,0 +1,8 @@
+{
+    "ammo-category": [
+        ["maze-terraforming-artillery-shell", "maze-terraforming-artillery-shell-category"]
+    ],
+    "entity": [
+        ["maze-terraforming-artillery-projectile", "maze-terraforming-projectile"]
+    ]
+}
