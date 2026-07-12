@@ -26,7 +26,6 @@ data:extend {{
    
     category = "mangrove",
     icon = "__base__/graphics/icons/tree-08.png",
-    icon_size = 32,
     flags = {"placeable-neutral"},
     order="a-b-mangrove-avicennia",
     collision_mask = {layers={item= true, resource=true}},
@@ -68,7 +67,6 @@ data:extend {{
     name = "mangrove-bruguiera",
     category = "mangrove",
     icon = "__base__/graphics/icons/tree-08.png",
-    icon_size = 32,
     flags = {"placeable-neutral"},
     order="a-b-mangrove-bruguiera",
     collision_mask = {layers={item= true, resource=true}},
