@@ -25,7 +25,6 @@ data:extend{{
     name = "green-wood",
     icons = {{
         icon = "__base__/graphics/icons/wood.png",
-        icon_size = 32,
         tint = {r=0.41, g=0.8, b=0.41, a=1.0},
     }},
     flags = {},
