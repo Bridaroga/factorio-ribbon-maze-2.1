@@ -40,11 +40,10 @@ data:extend ({
         icons = {
             {
                 icon = "__base__/graphics/icons/wood.png",
-                icon_size = 32,
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-raw-wood",
@@ -69,12 +68,11 @@ data:extend ({
         icons = {
             {
                 icon = "__base__/graphics/icons/wood.png",
-                icon_size = 32,
-                tint = { r = 0.41, g = 0.8, b = 0.41, a = 1.0 },
+                tint = { r = 0.41, g = 0.8, b = 0.41, a = 1.0 }
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-green-wood",
@@ -97,12 +95,11 @@ data:extend ({
         subgroup = "intermediate-product",
         icons = {
             {
-                icon = "__base__/graphics/icons/wood.png",
-                icon_size = 32,
+                icon = "__base__/graphics/icons/wood.png"
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-wood",
@@ -125,12 +122,11 @@ data:extend ({
         subgroup = "intermediate-product",
         icons = {
             {
-                icon = "__base__/graphics/icons/wooden-chest.png",
-                icon_size = 32,
+                icon = "__base__/graphics/icons/wooden-chest.png"
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-wood",
@@ -153,12 +149,11 @@ data:extend ({
         subgroup = "intermediate-product",
         icons = {
             {
-                icon = "__base__/graphics/icons/small-electric-pole.png",
-                icon_size = 32,
+                icon = "__base__/graphics/icons/small-electric-pole.png"
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-wood",
@@ -181,12 +176,11 @@ data:extend ({
         subgroup = "intermediate-product",
         icons = {
             {
-                icon = "__base__/graphics/icons/fish.png",
-                icon_size = 32,
+                icon = "__base__/graphics/icons/fish.png"
             },
             {
                 icon = "__RibbonMaze21__/graphics/icons/compost-shredding.png",
-                icon_size = 32,
+                icon_size = 32
             },
         },
         order = "terraforming-shredding-raw-fish",
