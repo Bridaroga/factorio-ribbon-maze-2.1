@@ -6,6 +6,6 @@
   "contact": "h8ul.mods@gmail.com, kajacx@gmail.com",
   "homepage": "https://github.com/Bridaroga/factorio-ribbon-maze-2.1",
   "factorio_version": "2.1",
-  "dependencies": ["base >= 2.1", "! quality", "! recycler", "! space-age"],
+  "dependencies": ["base >= 2.1", "! quality", "! space-age"],
   "description": "The maze itself is destined to be automated. Original mod by H8UL. Fixed for 1.1 by kajacx. Fixed for 2.0 by Knusan. Fixed for 2.1 by Raphal/Bridaroga."
 }
