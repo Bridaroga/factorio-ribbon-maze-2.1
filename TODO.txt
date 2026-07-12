@@ -1,10 +1,8 @@
 #TODO
 |
 |-> Shortcut e item ya funcionan, pero no funciona el disparar la artillería.
-|-> Compatibilidad con Reciclador.
 |-> Compatibilidad con Calidad.
 |-> Compatibilidad con Space Age.
-|-> Apuntado manual no funciona.
 |-> El agua a 65 °C no tiene utilidad.
 |-> Implementar maze normal.
 |-> El relleno no destruye los manglares.
