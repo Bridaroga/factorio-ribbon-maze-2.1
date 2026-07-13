@@ -37,20 +37,23 @@ require "control.maze-control"
 script.on_init(function()
     local nauvis = game.surfaces["nauvis"]
     if nauvis then
-        ribbonMazeInitHandler({surface_index = nauvis.index})
+        --ribbonMazeInitHandler({surface_index = nauvis.index})
+        ribbonMazeInitHandler()
     end
 end)
 
 -- Kjører når en ny planet blir generert (Fanger opp Vulcanus når du teleporterer)
 script.on_event(defines.events.on_surface_created, function(event)
-    ribbonMazeInitHandler(event)
+    --ribbonMazeInitHandler(event)
+    ribbonMazeInitHandler()
 end)
 
 -- Sikkerhetsnett: Hvis du teleporterer og overflaten mot formodning mangler data
 script.on_event(defines.events.on_player_changed_surface, function(event)
     local player = game.players[event.player_index]
     if player and player.valid then
-        ribbonMazeInitHandler({surface_index = player.surface.index})
+        --ribbonMazeInitHandler({surface_index = player.surface.index})
+        ribbonMazeInitHandler()
     end
 end)
 
