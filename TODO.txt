@@ -1,12 +1,17 @@
 #TODO
 |
-|-> Shortcut e item ya funcionan, pero no funciona el disparar la artillería.
-|-> Compatibilidad con Calidad.
 |-> Compatibilidad con Space Age.
+    - Recursos de otros planetas.
+    - Quitar recursos de Nauvis donde corresponda.
+    - Generar maze distinto para cada plataforma espacial.
+    - Quitar agua de plataformas y/o planetas (o dejar opción en la config).
 |-> El agua a 65 °C no tiene utilidad.
 |-> Implementar maze normal.
 |-> El relleno no destruye los manglares.
-|-> Cambiar "Probabilidad de bucles" a algo que sea de 1 a 100 (0.00 - 1.00)
+|-> Cambiar "Probabilidad de bucles" a algo que sea de 1 a 100 (0.00 - 1.00).
 |-> No se puede "cortar" la artillería.
 |-> Super-pegar no elimina la artillería.
 |-> Ver si se puede cambiar el sentido del ribbon world.
+|-> Planeta de fondo del espacio que sea un laberinto.
+|-> Compostaje de material marrón, cambiar reciclado a 25% de Compostaje marrón.
+|-> Shortcut e item ya funcionan, pero no funciona el disparar la artillería.
