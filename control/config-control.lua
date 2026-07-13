@@ -50,7 +50,7 @@ function updateRibbonMazeConfig()
     --
     -- assign to storage
     --
-    storage["ribbonMazeConfig"] = config 
+    storage["ribbonMazeConfig"] = config
     return config
 end
 

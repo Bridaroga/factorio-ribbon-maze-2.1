@@ -472,7 +472,7 @@ function createRibbonMazeConfig(surface)
         fishList = fish,
     }
 
-     if surface and surface.name == "vulcanus" then
+    if surface and surface.name == "vulcanus" then
         config2.mazeWallTile = "basalt-1"   -- Gjør murene til mørk vulkanstein
         config2.waterTile = "lava"          -- Valgfritt: Gjør vann-stier om til lava!
     end

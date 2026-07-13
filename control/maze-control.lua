@@ -777,7 +777,7 @@ end
 function ribbonMazeInitHandler()
 
     local config = storage["ribbonMazeConfig"]
-    if(not config) then 
+    if not config then
         config = ribbonMazeConfig()
     end
 
@@ -796,7 +796,7 @@ function ribbonMazeInitHandler()
                 maze_terraforming_artillery_exists = true
             end
         end
-        
+
         -- when loading an map from 0.17, don't create forces again
         if (not maze_terraforming_targets_exists and not maze_terraforming_artillery_exists) then
             game.create_force("maze-terraforming-targets")
