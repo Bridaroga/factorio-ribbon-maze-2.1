@@ -774,6 +774,18 @@ function unchart(commandInfo)
     end
 end
 
+function ribbonMazeSurfaceCreated(event)
+    local surface_name = game.surfaces[event.surface_index].name
+    storage.modSurfaceInfo = storage.modSurfaceInfo or {}
+
+    if not storage.modSurfaceInfo[surface_name] then
+        storage.modSurfaceInfo[surface_name] = {
+            terraformingMangroveRng = Cmwc.withSeed( game.surfaces[event.surface_index].map_gen_settings.seed )
+        }
+        game.print("Ribbon Maze data created for surface: " .. surface_name)
+    end
+end
+
 function ribbonMazeInitHandler()
 
     local config = storage["ribbonMazeConfig"]
@@ -818,25 +830,14 @@ function ribbonMazeInitHandler()
     storage.modSurfaceInfo = storage.modSurfaceInfo or {}
     -- storage.modSurfaceInfo[config.modSurfaces[1]] = {}
     local surface_name = config.modSurfaces[1] -- Standard fallback (Nauvis)
-    
-    if event and event.surface_index then
-        local surface = game.surfaces[event.surface_index]
-        if surface then
-            surface_name = surface.name
-        end
-    end
 
-    -- Initialiser overflatens data hvis den ikke finnes fra før
     if not storage.modSurfaceInfo[surface_name] then
-        local surface_index = event and event.surface_index or game.surfaces["nauvis"].index
-
-        -- 2. Hent seed basert på den indeksen
+        local surface_index = game.surfaces["nauvis"].index
         local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
 
-        -- 3. Opprett RNG-generatoren med det trygge frøet
         storage.modSurfaceInfo[surface_name] = {
-            terraformingMangroveRng = Cmwc.withSeed(surface_seed) 
+            terraformingMangroveRng = Cmwc.withSeed(surface_seed)
         }
-        game.print("Ribbon Maze data opprettet for overflate: " .. surface_name)
+        game.print("Ribbon Maze data created for surface: " .. surface_name)
     end
 end
