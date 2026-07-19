@@ -20,7 +20,7 @@
    SOFTWARE.
 --]]
 
-data:extend{
+data:extend({
     {
         type = "int-setting",
         name = "ribbon-maze-blocks",
@@ -96,42 +96,42 @@ data:extend{
         name = "ribbon-maze-stone",
         setting_type = "runtime-global",
         default_value = true,
-        order="rb-h",
+        order="rb-[1nauvis]-a",
     },
     {
         type = "bool-setting",
         name = "ribbon-maze-coal",
         setting_type = "runtime-global",
         default_value = true,
-        order="rb-i",
+        order="rb-[1nauvis]-b",
     },
     {
         type = "bool-setting",
         name = "ribbon-maze-copper-ore",
         setting_type = "runtime-global",
         default_value = true,
-        order="rb-j",
+        order="rb-[1nauvis]-c",
     },
     {
         type = "bool-setting",
         name = "ribbon-maze-iron-ore",
         setting_type = "runtime-global",
         default_value = true,
-        order="rb-k",
-    },
-    {
-        type = "bool-setting",
-        name = "ribbon-maze-uranium-ore",
-        setting_type = "runtime-global",
-        default_value = true,
-        order="rb-lu",
+        order="rb-[1nauvis]-d",
     },
     {
         type = "bool-setting",
         name = "ribbon-maze-crude-oil",
         setting_type = "runtime-global",
         default_value = true,
-        order="rb-lc",
+        order="rb-[1nauvis]-e",
+    },
+    {
+        type = "bool-setting",
+        name = "ribbon-maze-uranium-ore",
+        setting_type = "runtime-global",
+        default_value = true,
+        order="rb-[1nauvis]-f",
     },
     {
         type = "bool-setting",
@@ -213,11 +213,93 @@ data:extend{
         default_value = "{}",
         hidden = true,
     },
-    -- {
-    --     type = "string-setting",
-    --     name = "modSurfaceInfo",
-    --     setting_type = "runtime-global",
-    --     default_value = "{}"
-    -- }
-}
+    --[[{
+        type = "string-setting",
+        name = "modSurfaceInfo",
+        setting_type = "runtime-global",
+        default_value = "{}",
+        hidden = true,
+    }]]
+})
 
+if mods["space-age"] then
+    data:extend({
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-vulcanus-coal",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[2vulcanus]-a",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-vulcanus-calcite",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[2vulcanus]-b",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-vulcanus-tungsten-ore",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[2vulcanus]-c",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-vulcanus-sulfuric-acid-geyser",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[2vulcanus]-d",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-fulgora-scrap",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[3fulgora]-a",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-gleba-stone",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[4gleba]-a",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-gleba-natural-yumako-soil", --tile
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[4gleba]-b",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-gleba-natural-jellynut-soil", --tile
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[4gleba]-c",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-aquilo-crude-oil",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[5aquilo]-a",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-aquilo-lithium-brine",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[5aquilo]-b",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-aquilo-fluorine-vent",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[5aquilo]-c",
+        }
+    })
+end
