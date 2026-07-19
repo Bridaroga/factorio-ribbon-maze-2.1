@@ -96,7 +96,7 @@ end
 
 
 -- register with script.on_event(defines.events.on_runtime_mod_setting_changed, ribbonMazeModSettingChanged):
-function ribbonMazeModSettingChanged()
-    updateRibbonMazeConfig()
+function ribbonMazeModSettingChanged(event)
+    updateRibbonMazeConfig("nauvis")
 end
 
