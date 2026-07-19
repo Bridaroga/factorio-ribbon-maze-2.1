@@ -39,11 +39,6 @@ script.on_init(function()
     end
 end)
 
--- Runs when a new planet is generated
-script.on_event(defines.events.on_surface_created, function(event)
-    ribbonMazeSurfaceCreated(event)
-end)
-
 script.on_event(defines.events.on_player_created, ribbonMazePlayerCreatedEventHander)
 script.on_event(defines.events.on_chunk_generated, ribbonMazeChunkGeneratedEventHandler)
 script.on_event(defines.events.on_research_finished, ribbonMazeResourceFinishedEventHandler)
