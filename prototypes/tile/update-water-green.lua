@@ -21,18 +21,27 @@
 --]]
 
 local function convertToMazeTile(mazeTile)
+    if mazeTile == "lava-hot" then
+        mazeTile.tint = { r = 0, g = 0, b = 0.9 }
+    end
+
     mazeTile.map_color={r=0.1, g=0.1, b=0.1}
-    
-    mazeTile.collision_mask = {layers= {item = true, water_tile= true, player=true, is_lower_object=true, object=true, is_object=true, floor=true, meltable=true, doodad=true, resource=true, ground_tile=true}}
-        -- "ground-tile",
-        
-        -- "resource-layer",
-        -- "floor-layer",
-        
-        
-        
-        -- "doodad-layer"
-    
+
+    mazeTile.collision_mask = {
+        layers = {
+            item = true,
+            water_tile= true,
+            player=true,
+            is_lower_object=true,
+            object=true,
+            is_object=true,
+            floor=true,
+            meltable=true,
+            doodad=true,
+            resource=true,
+            ground_tile=true
+        }
+    }
 
     mazeTile.effect_color = {0.02, 0.02, 0.02}
 
@@ -50,7 +59,6 @@ local function convertToMazeTile(mazeTile)
                 picture = "__RibbonMaze21__/graphics/terrain/maze-floor2.png",
                 count = 4,
                 size = 2
-
             },
             {
                 picture = "__RibbonMaze21__/graphics/terrain/maze-floor4.png",
@@ -78,3 +86,7 @@ end
 
 -- Reuse water-green as a maze tile, this allows us to automatically use the base mod's tile transitions
 convertToMazeTile(data.raw.tile["water-green"])
+convertToMazeTile(data.raw.tile["lava-hot"])
+convertToMazeTile(data.raw.tile["gleba-deep-lake"])
+convertToMazeTile(data.raw.tile["oil-ocean-deep-2"])
+convertToMazeTile(data.raw.tile["ammoniacal-ocean-2"])
