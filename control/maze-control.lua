@@ -521,9 +521,9 @@ end
 
 function ribbonMazeChunkGeneratedEventHandler(event)
 
-    local config = ribbonMazeConfig()
-
     local surface = event.surface
+    local config = ribbonMazeConfig(surface.name)
+
     local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
@@ -775,14 +775,18 @@ function unchart(commandInfo)
 end
 
 function ribbonMazeSurfaceCreated(event)
-    local surface_name = game.surfaces[event.surface_index].name
+    local surface_index = event.surface_index
+    local surface_name = game.surfaces[surface_index].name
     storage.modSurfaceInfo = storage.modSurfaceInfo or {}
 
     if not storage.modSurfaceInfo[surface_name] then
+        local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
         storage.modSurfaceInfo[surface_name] = {
-            terraformingMangroveRng = Cmwc.withSeed( game.surfaces[event.surface_index].map_gen_settings.seed )
+            terraformingMangroveRng = Cmwc.withSeed(surface_seed)
         }
-        game.print("Ribbon Maze data created for surface: " .. surface_name)
+        updateRibbonMazeConfig(surface_name) -- Crea cosas del último planeta generado en otros planetas.
+        --game.print("Ribbon Maze Surface Created data created for surface: " .. surface_name)
+        --game.print("Ribbon Maze Surface Created index: " .. surface_index)
     end
 end
 
@@ -790,7 +794,7 @@ function ribbonMazeInitHandler()
 
     local config = storage["ribbonMazeConfig"]
     if not config then
-        config = ribbonMazeConfig()
+        config = ribbonMazeConfig("nauvis")
     end
 
     if not config then
@@ -838,6 +842,6 @@ function ribbonMazeInitHandler()
         storage.modSurfaceInfo[surface_name] = {
             terraformingMangroveRng = Cmwc.withSeed(surface_seed)
         }
-        game.print("Ribbon Maze data created for surface: " .. surface_name)
+        --game.print("Ribbon Maze Init Handler data created for surface: " .. surface_name)
     end
 end
