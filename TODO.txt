@@ -2,6 +2,22 @@
 |
 |-> Compatibilidad con Space Age.
     - Recursos de otros planetas.
+        - Aquilo:
+            - Litio.
+            - Flúor.
+            - Petróleo.
+        - Fulgora:
+            - Chatarra.
+        - Gleba:
+            - Zona verde.
+            - Zona rosada.
+            - Piedra (en baja cantidad).
+        - Vulcanus:
+            - Géiser de ácido sulfúrico.
+            - Carbón.
+            - Calcita.
+            - Tungsteno.
+    - Enemigos de Vulcanus atacan los abismos.
     - Quitar recursos de Nauvis donde corresponda.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas y/o planetas (o dejar opción en la config).
@@ -15,3 +31,9 @@
 |-> Planeta de fondo del espacio que sea un laberinto.
 |-> Compostaje de material marrón, cambiar reciclado a 25% de Compostaje marrón.
 |-> Shortcut e item ya funcionan, pero no funciona el disparar la artillería.
+|-> Modo caos (recursos de otros planetas en todos).
+
+
+
+
+resourceMatrix
