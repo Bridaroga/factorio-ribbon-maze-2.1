@@ -26,11 +26,12 @@
 
 storage=storage
 
-function updateRibbonMazeConfig()
+function updateRibbonMazeConfig(surface)
 
     --
     -- create config object
-    local surface = (event and event.surface) and event.surface.name or "nauvis"
+    --local surface = (event and event.surface) and event.surface.name or "nauvis"
+    --local surface = "nauvis"
     local config = createRibbonMazeConfig(surface)
     if not config then
         error('createRibbonMazeConfig() returned nil')
@@ -55,6 +56,6 @@ function updateRibbonMazeConfig()
 end
 
 -- Accessor function used throughout the mod:
-function ribbonMazeConfig()
-    return storage["ribbonMazeConfig"] or updateRibbonMazeConfig()
+function ribbonMazeConfig(surface)
+    return storage["ribbonMazeConfig"] or updateRibbonMazeConfig(surface)
 end
