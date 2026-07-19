@@ -35,7 +35,7 @@ local function infiniteOre(entityPrototype)
     end
 end
 
-local function deadEndEnabled(settingsGlobal, resource)
+local function deadEndEnabled(settingsGlobal, resource, surface)
 
     local entityPrototype = prototypes.entity[resource]
     if not entityPrototype then
@@ -56,28 +56,88 @@ local function deadEndEnabled(settingsGlobal, resource)
         return false
     end
 
-    if resource == "iron-ore" then
-        return settingsGlobal["ribbon-maze-iron-ore"].value
+    -- Nauvis resources.
+    if surface == "nauvis" then
+        if resource == "iron-ore" then
+            return settingsGlobal["ribbon-maze-iron-ore"].value
+        end
+
+        if resource == "copper-ore" then
+            return settingsGlobal["ribbon-maze-copper-ore"].value
+        end
+
+        if resource == "coal" then
+            return settingsGlobal["ribbon-maze-coal"].value
+        end
+
+        if resource == "stone" then
+            return settingsGlobal["ribbon-maze-stone"].value
+        end
+
+        if resource == "crude-oil" then
+            return settingsGlobal["ribbon-maze-crude-oil"].value
+        end
+
+        if resource == "uranium-ore" then
+            return settingsGlobal["ribbon-maze-uranium-ore"].value
+        end
     end
 
-    if resource == "copper-ore" then
-        return settingsGlobal["ribbon-maze-copper-ore"].value
+    -- Vulcanus resources.
+    if surface == "vulcanus" then
+        if resource == "coal" then
+            return settingsGlobal["ribbon-maze-vulcanus-coal"].value
+        end
+
+        if resource == "calcite" then
+            return settingsGlobal["ribbon-maze-vulcanus-calcite"].value
+        end
+
+        if resource == "tungsten-ore" then
+            return settingsGlobal["ribbon-maze-vulcanus-tungsten-ore"].value
+        end
+
+        if resource == "sulfuric-acid-geyser" then
+            return settingsGlobal["ribbon-maze-vulcanus-sulfuric-acid-geyser"].value
+        end
     end
 
-    if resource == "coal" then
-        return settingsGlobal["ribbon-maze-coal"].value
+    -- Fulgora resources.
+    if surface == "fulgora" then
+        if resource == "scrap" then
+            return settingsGlobal["ribbon-maze-fulgora-scrap"].value
+        end
     end
 
-    if resource == "stone" then
-        return settingsGlobal["ribbon-maze-stone"].value
+    -- Gleba resources.
+    if surface == "gleba" then
+        if resource == "stone" then
+            return settingsGlobal["ribbon-maze-gleba-stone"].value
+        end
+    --[[
+        if resource == "green-biome" then
+            return settingsGlobal["ribbon-maze-gleba-green-biome"].value
+        end
+
+        if resource == "red-biome" then
+            return settingsGlobal["ribbon-maze-red-biome"].value
+        end
+    ]]
     end
 
-    if resource == "crude-oil" then
-        return settingsGlobal["ribbon-maze-crude-oil"].value
-    end
+    -- Aquilo resources.
+    if surface == "aquilo" then
+        if resource == "crude-oil" then
+            return settingsGlobal["ribbon-maze-aquilo-crude-oil"].value
+        end
 
-    if resource == "uranium-ore" then
-        return settingsGlobal["ribbon-maze-uranium-ore"].value
+        if resource == "lithium-brine" then
+            return settingsGlobal["ribbon-maze-aquilo-lithium-brine"].value
+        end
+
+        if resource == "fluorine-vent" then
+            return settingsGlobal["ribbon-maze-aquilo-fluorine-vent"].value
+        end
     end
 
     return settingsGlobal["ribbon-maze-mod-resources"].value
@@ -264,16 +324,25 @@ function createRibbonMazeConfig(surface)
     waterTileReplacement["water-green"] = "red-desert-1"
     waterTileReplacement["deepwater"] = "red-desert-2"
     waterTileReplacement["deepwater-green"] = "red-desert-3"
-    waterTileReplacement["volcanic-ash-light"] = "volcanic-ash-dark"
-    waterTileReplacement["volcanic-ash-dark"]  = "volcanic-ash-dark"
-    waterTileReplacement["volcanic-soil-light"] = "volcanic-ash-dark"
-    waterTileReplacement["volcanic-soil-dark"]  = "volcanic-ash-dark"
-    waterTileReplacement["basalt-1"]           = "volcanic-ash-dark"
-    waterTileReplacement["basalt-2"]           = "volcanic-ash-dark"
-    waterTileReplacement["basalt-3"]           = "volcanic-ash-dark"
-    waterTileReplacement["basalt-chunk-vis"]   = "volcanic-ash-dark"
-    waterTileReplacement["lava"]               = "volcanic-ash-dark"
-    waterTileReplacement["lava-hot"]           = "volcanic-ash-dark"
+    waterTileReplacement["lava"] = "volcanic-ash-dark"
+    waterTileReplacement["lava-hot"] = "volcanic-ash-light"
+    waterTileReplacement["gleba-deep-lake"] = "lowland-olive-blubber"
+    waterTileReplacement["wetland-blue-slime"] = "lowland-olive-blubber-2"
+    waterTileReplacement["wetland-light-green-slime"] = "lowland-olive-blubber-3"
+    waterTileReplacement["wetland-green-slime"] = "lowland-brown-blubber"
+    waterTileReplacement["wetland-light-dead-skin"] = "lowland-pale-green"
+    waterTileReplacement["wetland-dead-skin"] = "lowland-cream-cauliflower"
+    waterTileReplacement["wetland-pink-tentacle"] = "lowland-cream-cauliflower-2"
+    waterTileReplacement["wetland-red-tentacle"] = "lowland-dead-skin"
+    waterTileReplacement["wetland-yumako"] = "lowland-dead-skin-2"
+    waterTileReplacement["wetland-jellynut"] = "lowland-cream-red"
+    waterTileReplacement["oil-ocean-deep"] = "fulgoran-dust"
+    waterTileReplacement["oil-ocean-deep-2"] = "fulgoran-dunes"
+    waterTileReplacement["oil-ocean-shallow"] = "fulgoran-sand"
+    waterTileReplacement["oil-ocean-shallow-2"] = "fulgoran-rock"
+    waterTileReplacement["ammoniacal-ocean"] = "ice-rough"
+    waterTileReplacement["ammoniacal-ocean-2"] = "ice-rough"
+    waterTileReplacement["brash-ice"] = "ice-smooth"
 
     local resourceMatrix = {}
     resourceMatrix[2] = {}
@@ -290,24 +359,24 @@ function createRibbonMazeConfig(surface)
         table.insert(resourceMatrix[4], "mixed_")
         table.insert(resourceMatrix[6], "mixed_")
     else
-        if deadEndEnabled(settingsGlobal, "iron-ore") then
+        if deadEndEnabled(settingsGlobal, "iron-ore", surface) then
             table.insert(resourceMatrix[2], "iron-ore")
         end
 
-        if deadEndEnabled(settingsGlobal, "coal") then
+        if deadEndEnabled(settingsGlobal, "coal", surface) then
             table.insert(resourceMatrix[4], "coal")
         end
 
-        if deadEndEnabled(settingsGlobal, "copper-ore") then
+        if deadEndEnabled(settingsGlobal, "copper-ore", surface) then
             table.insert(resourceMatrix[6], "copper-ore")
         end
     end
 
-    if deadEndEnabled(settingsGlobal, "crude-oil") then
+    if deadEndEnabled(settingsGlobal, "crude-oil", surface) then
         table.insert(resourceMatrix[8], "crude-oil")
     end
 
-    if deadEndEnabled(settingsGlobal, "uranium-ore") then
+    if deadEndEnabled(settingsGlobal, "uranium-ore", surface) then
         table.insert(resourceMatrix[10], "uranium-ore")
     end
 
@@ -333,7 +402,7 @@ function createRibbonMazeConfig(surface)
         if prototype.type=="fish" then
             table.insert(fish, name)
         end
-        if deadEndEnabled(settingsGlobal, name) then
+        if deadEndEnabled(settingsGlobal, name, surface) then
 
             resources[name] = true
             local mixedOreStrength = mixedOreStrengths[name] or guessMixedOreStrength(name)
@@ -358,7 +427,7 @@ function createRibbonMazeConfig(surface)
             end
         elseif infiniteOres then
             local finiteOre = infiniteOre(prototype)
-            if finiteOre and deadEndEnabled(settingsGlobal, finiteOre) then
+            if finiteOre and deadEndEnabled(settingsGlobal, finiteOre, surface) then
                 infiniteOres[finiteOre] = name
                 resources[name] = true
             end
@@ -367,7 +436,7 @@ function createRibbonMazeConfig(surface)
 
     local ensureResources = {}
 
-    if deadEndEnabled(settingsGlobal, "crude-oil") then
+    if deadEndEnabled(settingsGlobal, "crude-oil", surface) then
         ensureResources["crude-oil"] = {
             fallbackY = 9,
             maxY = 32,
@@ -375,7 +444,7 @@ function createRibbonMazeConfig(surface)
         }
     end
 
-    if deadEndEnabled(settingsGlobal, "uranium-ore") then
+    if deadEndEnabled(settingsGlobal, "uranium-ore", surface) then
         ensureResources["uranium-ore"] = {
             fallbackY = 17,
             maxY = 32,
@@ -383,8 +452,8 @@ function createRibbonMazeConfig(surface)
         }
     end
 
-    local minMixedResourcesPatchworkSize =  settingsGlobal["ribbon-maze-mixed-patchwork-min"].value
-    local maxMixedResourcesPatchworkSize =  settingsGlobal["ribbon-maze-mixed-patchwork-max"].value
+    local minMixedResourcesPatchworkSize = settingsGlobal["ribbon-maze-mixed-patchwork-min"].value
+    local maxMixedResourcesPatchworkSize = settingsGlobal["ribbon-maze-mixed-patchwork-max"].value
     if maxMixedResourcesPatchworkSize < minMixedResourcesPatchworkSize then
         maxMixedResourcesPatchworkSize = minMixedResourcesPatchworkSize
     end
@@ -472,9 +541,25 @@ function createRibbonMazeConfig(surface)
         fishList = fish,
     }
 
-    if surface and surface.name == "vulcanus" then
-        config2.mazeWallTile = "basalt-1"   -- Gjør murene til mørk vulkanstein
+    --if surface and surface.name == "vulcanus" then
+    if surface == "vulcanus" then
+        config2.mazeWallTile = "lava-hot"   -- Gjør murene til mørk vulkanstein
         config2.waterTile = "lava"          -- Valgfritt: Gjør vann-stier om til lava!
+    end
+
+    if surface == "gleba" then
+        config2.mazeWallTile = "gleba-deep-lake"
+        config2.waterTile = "wetland-blue-slime"
+    end
+
+    if surface == "fulgora" then
+        config2.mazeWallTile = "oil-ocean-deep-2"
+        config2.waterTile = "oil-ocean-deep"
+    end
+
+    if surface == "aquilo" then
+        config2.mazeWallTile = "ammoniacal-ocean-2"
+        config2.waterTile = "ammoniacal-ocean"
     end
 
     storage["ribbonMazeConfig"] = config2
