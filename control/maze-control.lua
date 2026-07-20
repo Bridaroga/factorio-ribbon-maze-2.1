@@ -520,11 +520,9 @@ function generateMangroves(modSurfaceInfo, surface, chunkTilePosition, rng, conf
 end
 
 function ribbonMazeChunkGeneratedEventHandler(event)
-
     local surface = event.surface
     local config = ribbonMazeConfig(surface.name)
-
-    local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+    local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
         return
@@ -623,12 +621,10 @@ function ribbonMazeChunkGeneratedEventHandler(event)
 end
 
 function ribbonMazePlayerCreatedEventHander(event)
-
-    local config = ribbonMazeConfig()
-
     local player = game.players[event.player_index]
     local surface = player.surface
-    local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+    local config = ribbonMazeConfig(surface.name)
+    local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
         return
@@ -656,7 +652,7 @@ function ribbonMazePlayerCreatedEventHander(event)
 end
 
 local function resourceScanning(research, resourceName)
-    local config = ribbonMazeConfig()
+    local config = ribbonMazeConfig("nauvis")
     local maxY
     if config.ensureResources[resourceName] then
         maxY = config.ensureResources[resourceName].maxY
@@ -668,7 +664,7 @@ local function resourceScanning(research, resourceName)
     for _,surfaceName in pairs(config.modSurfaces) do
         local surface = game.surfaces[surfaceName]
         if surface then
-            local modSurfaceInfo = storage.modSurfaceInfo[surfaceName]
+            local modSurfaceInfo = storage["ribbonMazeConfig"][surfaceName].modSurfaceInfo
             if modSurfaceInfo then
                 for findY = 1, maxY, 2 do
                     for findX = 1, modSurfaceInfo.maze.numColumns, 2 do
@@ -719,7 +715,7 @@ function regenerateMaze(commandInfo)
     local config = ribbonMazeConfig()
     local playerForces = findPlayerForces()
     for _, surfaceName in pairs(config.modSurfaces) do
-        local modSurfaceInfo = storage.modSurfaceInfo[surfaceName]
+        local modSurfaceInfo = storage["ribbonMazeConfig"][surfaceName].modSurfaceInfo
         local surface = game.surfaces[surfaceName]
         modSurfaceInfo.masterRng = Cmwc.withSeed(Cmwc.randUint32(modSurfaceInfo.masterRng) + surface.map_gen_settings.seed)
         modSurfaceInfo.terraformingMangroveRng = Cmwc.deriveNew(modSurfaceInfo.masterRng)
@@ -781,20 +777,19 @@ function ribbonMazeSurfaceCreated(event)
 
     if not storage.modSurfaceInfo[surface_name] then
         local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
-        storage.modSurfaceInfo[surface_name] = {
-            terraformingMangroveRng = Cmwc.withSeed(surface_seed)
-        }
-        updateRibbonMazeConfig(surface_name) -- Crea cosas del último planeta generado en otros planetas.
-        --game.print("Ribbon Maze Surface Created data created for surface: " .. surface_name)
-        --game.print("Ribbon Maze Surface Created index: " .. surface_index)
-    end
+    config.modSurfaceInfo = {
+        terraformingMangroveRng = Cmwc.withSeed(surface_seed)
+    }
+
+    storage["ribbonMazeConfig"][surface_name] = config
 end
 
-function ribbonMazeInitHandler()
+function ribbonMazeInitHandler(surface)
 
     local config = storage["ribbonMazeConfig"]
     if not config then
-        config = ribbonMazeConfig("nauvis")
+        storage["ribbonMazeConfig"] = { [surface] = nil }
+        config = ribbonMazeConfig(surface)
     end
 
     if not config then
@@ -831,17 +826,12 @@ function ribbonMazeInitHandler()
         end
     end
 
-    storage.modSurfaceInfo = storage.modSurfaceInfo or {}
-    -- storage.modSurfaceInfo[config.modSurfaces[1]] = {}
-    local surface_name = config.modSurfaces[1] -- Standard fallback (Nauvis)
+    local surface_index = game.surfaces[surface].index
+    local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
 
-    if not storage.modSurfaceInfo[surface_name] then
-        local surface_index = game.surfaces["nauvis"].index
-        local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
+    config.modSurfaceInfo = {
+        terraformingMangroveRng = Cmwc.withSeed(surface_seed)
+    }
 
-        storage.modSurfaceInfo[surface_name] = {
-            terraformingMangroveRng = Cmwc.withSeed(surface_seed)
-        }
-        --game.print("Ribbon Maze Init Handler data created for surface: " .. surface_name)
-    end
+    storage["ribbonMazeConfig"][surface] = config
 end

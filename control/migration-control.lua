@@ -21,10 +21,10 @@
 --]]
 
 local function fixes_0_6_7()
-    local config = ribbonMazeConfig()
+    local config = ribbonMazeConfig("nauvis")
 
     for _,surface in pairs(game.surfaces) do
-        local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+        local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
         if modSurfaceInfo then
             for chunkPosition in surface.get_chunks() do
                 local chunkTilePosition = {x = chunkPosition.x*32, y=chunkPosition.y*32}
@@ -94,9 +94,7 @@ function ribbonMazeConfigurationChanged(event)
     end
 end
 
-
 -- register with script.on_event(defines.events.on_runtime_mod_setting_changed, ribbonMazeModSettingChanged):
 function ribbonMazeModSettingChanged(event)
     updateRibbonMazeConfig("nauvis")
 end
-

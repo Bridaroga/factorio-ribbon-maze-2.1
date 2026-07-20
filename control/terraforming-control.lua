@@ -66,21 +66,21 @@ function mazeTerraformingResultHandler(event)
         return
     end
 
-    local config = ribbonMazeConfig()
     local surface = event.entity.surface
-    
+    local config = ribbonMazeConfig(surface.name)
+
     -- Finn målet (bør være nøyaktig på samme posisjon)
     local target = surface.find_entity("maze-terraforming-target", event.entity.position)
-    
+
     if target and target.valid then
         local position = target.position
         local updatedTiles = {}
-        
+
         -- 1. IDENTIFISER FLISER SOM SKAL ENDRES
         for _, templatePos in pairs(circleTemplate) do
             local tileX = position.x + templatePos[1]
             local tileY = position.y + templatePos[2]
-            
+
             if surface.get_tile(tileX, tileY).name == config.mazeWallTile then
                 table.insert(updatedTiles, {name = config.waterTile, position = {tileX, tileY}})
             end
@@ -93,8 +93,8 @@ function mazeTerraformingResultHandler(event)
 
         -- 3. HÅNDTER MANGROVER LANGS KANTENE
         -- VIKTIG ENDRING: 'global' er erstattet med 'storage' i Factorio 2.0!
-        if storage.modSurfaceInfo and storage.modSurfaceInfo[surface.name] then
-            local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+        if storage["ribbonMazeConfig"][surface.name].modSurfaceInfo then
+            local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
             
             for _, templatePos in pairs(circleTemplate) do
                 local tileX = position.x + templatePos[1]
@@ -148,7 +148,7 @@ function mazeTerraformingResultHandler2(event)
 
             surface.set_tiles(updatedTiles)
 
-            local modSurfaceInfo = storage.modSurfaceInfo[surface.name]
+            local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
             for _, templatePos in pairs(circleTemplate) do
                 local tileX = position.x+templatePos[1]
                 local tileY = position.y+templatePos[2]

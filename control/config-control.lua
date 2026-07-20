@@ -50,11 +50,11 @@ function updateRibbonMazeConfig(surface)
     --
     -- assign to storage
     --
-    storage["ribbonMazeConfig"] = config
+    storage["ribbonMazeConfig"][surface] = config
     return config
 end
 
 -- Accessor function used throughout the mod:
 function ribbonMazeConfig(surface)
-    return storage["ribbonMazeConfig"] or updateRibbonMazeConfig(surface)
+    return storage["ribbonMazeConfig"][surface] or updateRibbonMazeConfig(surface)
 end
