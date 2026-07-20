@@ -589,7 +589,11 @@ function ribbonMazeChunkGeneratedEventHandler(event)
         elseif tileName == config.mazeWallTile then
             for tileX = chunkTilePosition.x+1, chunkTilePosition.x+29,4 do
                 for tileY = chunkTilePosition.y+1, chunkTilePosition.y+29,4 do
-                    local target = surface.create_entity{name="maze-terraforming-target", position={tileX,tileY}, force="maze-terraforming-targets"}
+                    surface.create_entity{
+                        name = "maze-terraforming-target",
+                        position = { tileX, tileY },
+                        force = "maze-terraforming-targets"
+                    }
                 end
             end
         end
