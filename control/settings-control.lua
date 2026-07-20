@@ -475,6 +475,7 @@ function createRibbonMazeConfig(surface)
 
         -- Surfaces for the mod to manage; by default only nauvis to avoid conflict with other mods
         modSurfaces = {"nauvis","vulcanus","gleba","fulgora","aquilo"},
+        modSurfaceInfo = {},
 
         -- Tile to use for water placed at the start of the maze ("row zero").
         waterTile = "water",
