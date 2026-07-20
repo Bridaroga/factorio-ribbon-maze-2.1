@@ -777,10 +777,43 @@ end
 function ribbonMazeSurfaceCreated(event)
     local surface_index = event.surface_index
     local surface_name = game.surfaces[surface_index].name
-    storage.modSurfaceInfo = storage.modSurfaceInfo or {}
+    local config = ribbonMazeConfig(surface_name)
 
-    if not storage.modSurfaceInfo[surface_name] then
-        local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
+    if not config then
+        error('createRibbonMazeConfig() returned nil')
+    end
+
+    if config.terraformingPrototypesEnabled then
+        local maze_terraforming_targets_exists = false
+        local maze_terraforming_artillery_exists = false
+        for _, f in pairs(game.forces) do
+            if (f.name == "maze-terraforming-targets") then
+                maze_terraforming_targets_exists   = true
+            end
+            if (f.name == "maze-terraforming-artillery") then
+                maze_terraforming_artillery_exists = true
+            end
+        end
+
+        -- when loading an map from 0.17, don't create forces again
+        if (not maze_terraforming_targets_exists and not maze_terraforming_artillery_exists) then
+            game.create_force("maze-terraforming-targets")
+            game.create_force("maze-terraforming-artillery")
+
+            game.forces["player"].set_friend("maze-terraforming-targets", true)
+            game.forces["maze-terraforming-targets"].set_friend("player", true)
+
+            game.forces["player"].set_friend("maze-terraforming-artillery", true)
+            game.forces["maze-terraforming-artillery"].set_friend("player", true)
+
+            game.forces["maze-terraforming-targets"].set_cease_fire("enemy", true)
+            game.forces["enemy"].set_cease_fire("maze-terraforming-targets", true)
+
+            game.forces["maze-terraforming-artillery"].set_cease_fire("maze-terraforming-targets", false)
+        end
+    end
+
+    local surface_seed = game.surfaces[surface_index].map_gen_settings.seed
     config.modSurfaceInfo = {
         terraformingMangroveRng = Cmwc.withSeed(surface_seed)
     }
