@@ -711,6 +711,8 @@ local function chartedChunk(surface, chunk, playerForces)
     return false
 end
 
+--[[
+-- Incomplete function
 function regenerateMaze(commandInfo)
     local config = ribbonMazeConfig()
     local playerForces = findPlayerForces()
@@ -759,6 +761,7 @@ function regenerateMaze(commandInfo)
     end
 end
 
+-- Incomplete function
 function unchart(commandInfo)
     local surface = game.player.surface;
     game.player.force.cancel_charting(surface);
@@ -769,6 +772,7 @@ function unchart(commandInfo)
         end
     end
 end
+]]
 
 function ribbonMazeSurfaceCreated(event)
     local surface_index = event.surface_index
