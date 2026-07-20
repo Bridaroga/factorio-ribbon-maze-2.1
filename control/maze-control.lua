@@ -696,6 +696,7 @@ function ribbonMazeResourceFinishedEventHandler(event)
     end
 end
 
+--[[
 local function findPlayerForces()
     local playerForces = {}
     for _, player in pairs(game.players) do
@@ -715,7 +716,6 @@ local function chartedChunk(surface, chunk, playerForces)
     return false
 end
 
---[[
 -- Incomplete function
 function regenerateMaze(commandInfo)
     local config = ribbonMazeConfig()
