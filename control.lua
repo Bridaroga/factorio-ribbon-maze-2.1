@@ -35,7 +35,7 @@ require "control.maze-control"
 script.on_init(function()
     local nauvis = game.surfaces["nauvis"]
     if nauvis then
-        ribbonMazeInitHandler()
+        ribbonMazeInitHandler("nauvis")
     end
 end)
 
