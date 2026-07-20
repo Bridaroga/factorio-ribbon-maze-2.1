@@ -30,8 +30,7 @@ function updateRibbonMazeConfig(surface)
 
     --
     -- create config object
-    --local surface = (event and event.surface) and event.surface.name or "nauvis"
-    --local surface = "nauvis"
+    --
     local config = createRibbonMazeConfig(surface)
     if not config then
         error('createRibbonMazeConfig() returned nil')
