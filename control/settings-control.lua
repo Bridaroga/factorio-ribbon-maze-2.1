@@ -318,6 +318,7 @@ function createRibbonMazeConfig(surface)
     waterTileReplacement["lava"] = "volcanic-ash-dark"
     waterTileReplacement["lava-hot"] = "volcanic-ash-light"
     waterTileReplacement["gleba-deep-lake"] = "lowland-olive-blubber"
+    --[[
     waterTileReplacement["wetland-blue-slime"] = "lowland-olive-blubber-2"
     waterTileReplacement["wetland-light-green-slime"] = "lowland-olive-blubber-3"
     waterTileReplacement["wetland-green-slime"] = "lowland-brown-blubber"
@@ -325,6 +326,9 @@ function createRibbonMazeConfig(surface)
     waterTileReplacement["wetland-dead-skin"] = "lowland-cream-cauliflower"
     waterTileReplacement["wetland-pink-tentacle"] = "lowland-cream-cauliflower-2"
     waterTileReplacement["wetland-red-tentacle"] = "lowland-dead-skin"
+    ]]
+    waterTileReplacement["natural-yumako-soil"] = "lowland-dead-skin-2"
+    waterTileReplacement["natural-jellynut-soil"] = "lowland-cream-red"
     waterTileReplacement["wetland-yumako"] = "lowland-dead-skin-2"
     waterTileReplacement["wetland-jellynut"] = "lowland-cream-red"
     waterTileReplacement["oil-ocean-deep"] = "fulgoran-dust"
