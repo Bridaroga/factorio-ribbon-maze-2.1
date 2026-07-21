@@ -114,15 +114,6 @@ local function deadEndEnabled(settingsGlobal, resource, surface)
         if resource == "stone" then
             return settingsGlobal["ribbon-maze-gleba-stone"].value
         end
-    --[[
-        if resource == "green-biome" then
-            return settingsGlobal["ribbon-maze-gleba-green-biome"].value
-        end
-
-        if resource == "red-biome" then
-            return settingsGlobal["ribbon-maze-red-biome"].value
-        end
-    ]]
     end
 
     -- Aquilo resources.
@@ -560,6 +551,7 @@ function createRibbonMazeConfig(surface)
         resources = resources,
         resourceAlignments = resourceAlignments,
         resourceStretchFactor = settingsGlobal["ribbon-maze-resource-stretch-factor"].value,
+        resourceTile = {},
 
         -- Infinite equivalents of ores, to place them at the centre of resource patches
         infiniteOres = infiniteOres,
@@ -604,6 +596,9 @@ function createRibbonMazeConfig(surface)
     if surface == "gleba" then
         config2.mazeWallTile = "gleba-deep-lake"
         config2.waterTile = "wetland-blue-slime"
+
+        config2.resourceTile["yumako"] = "natural-yumako-soil"
+        config2.resourceTile["jellynut"] = "natural-jellynut-soil"
     end
 
     if surface == "fulgora" then

@@ -129,7 +129,11 @@ local function calculateResource(config, modSurfaceInfo, x, y)
 
     local resource = {}
 
-    if config.resources[choice] or choice == "mixed_" or choice == "water_" then
+    if config.resources[choice]
+            or choice == "mixed_"
+            or choice == "water_"
+            or choice == "natural-yumako-soil_"
+            or choice == "natural-jellynut-soil_" then
         resource.resourceName = choice
         resource.minRand = 1.0 - (1.0 / (1+deadEnd.corridorLength/2))
         resource.rng = Cmwc.deriveNew(modSurfaceInfo.resourceGridRng)
@@ -323,7 +327,9 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
             else
                 patchworkSize = config.minMixedResourcesPatchworkSize
             end
-        elseif resourceName == "water_" then
+        elseif resourceName == "water_"
+                or resourceName == "natural-yumako-soil_"
+                or resourceName == "natural-jellynut-soil_" then
             -- do nothing
         else
             local collisionBox = prototypes.entity[resourceName].collision_box
@@ -383,6 +389,58 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
             return
         end
 
+        if resourceName == "natural-yumako-soil_" then
+            local updatedTiles = {}
+
+            for tileX = chunkPosition.x, chunkPosition.x+31 do
+                for tileY = chunkPosition.y, chunkPosition.y+31 do
+                    local replacement = config.resourceTile["yumako"]
+                    if replacement then
+                        table.insert(updatedTiles, {name = replacement, position = {tileX, tileY}})
+                    end
+                end
+            end
+
+            surface.set_tiles(updatedTiles)
+
+            -- Yumako tree.
+            for tileY = chunkPosition.y, chunkPosition.y+31 do
+                for tileX = chunkPosition.x, chunkPosition.x+31 do
+                    local randYumako = Cmwc.randFraction(resource.rng)
+                    local yumakoDensity = 0.03
+                    if randYumako <= yumakoDensity then
+                        surface.create_entity{name="yumako-tree", position={tileX,tileY}}
+                    end
+                end
+            end
+        end
+
+        if resourceName == "natural-jellynut-soil_" then
+            local updatedTiles = {}
+
+            for tileX = chunkPosition.x, chunkPosition.x+31 do
+                for tileY = chunkPosition.y, chunkPosition.y+31 do
+                    local replacement = config.resourceTile["jellynut"]
+                    if replacement then
+                        table.insert(updatedTiles, {name = replacement, position = {tileX, tileY}})
+                    end
+                end
+            end
+
+            surface.set_tiles(updatedTiles)
+
+            -- Jellynut tree.
+            for tileY = chunkPosition.y, chunkPosition.y+31 do
+                for tileX = chunkPosition.x, chunkPosition.x+31 do
+                    local randJellynut = Cmwc.randFraction(resource.rng)
+                    local jellynutDensity = 0.03
+                    if randJellynut <= jellynutDensity then
+                        surface.create_entity{name="jellystem", position={tileX,tileY}}
+                    end
+                end
+            end
+        end
+
         for tileY = chunkPosition.y+1, chunkPosition.y+30 do
 
             for tileX = chunkPosition.x+1, chunkPosition.x+30 do
@@ -428,6 +486,8 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
                             end
                         end
                     end
+                elseif resourceName == "natural-yumako-soil_" or resourceName == "natural-jellynut-soil_" then
+                    -- Do nothing.
                 else
                     local tileRandomAdjustment = Cmwc.randFractionRange(resource.rng, resource.minRand, 1.0)
 
