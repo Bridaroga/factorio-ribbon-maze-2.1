@@ -476,7 +476,8 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
                                             initial_amount=amount,
                                             position={randomOreX, randomOreY},
                                             enable_tree_removal=true,
-                                            enable_cliff_removal=true}
+                                            enable_cliff_removal=true
+                                        }
                                     end
                                 end
                             end
