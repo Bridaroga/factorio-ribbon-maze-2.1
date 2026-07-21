@@ -332,7 +332,6 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
                 or resourceName == "natural-jellynut-soil_" then
             -- do nothing
         else
-            local collisionBox = prototypes.entity[resourceName].collision_box
             alignment = config.resourceAlignments[resourceName]
             minimumAmount = prototypes.entity[resourceName].minimum_resource_amount or 100
 
@@ -358,9 +357,8 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
         if resourceName == "water_" then
             local updatedTiles = {}
 
-            for tileX = chunkPosition.x, chunkPosition.x+32 do
-                for tileY = chunkPosition.y, chunkPosition.y+32 do
-                    local tile = surface.get_tile(tileX, tileY)
+            for tileX = chunkPosition.x, chunkPosition.x+31 do
+                for tileY = chunkPosition.y, chunkPosition.y+31 do
                     local replacement = config.waterTile
                     if replacement then
                         table.insert(updatedTiles, {name = replacement, position = {tileX, tileY}})
@@ -444,8 +442,6 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
         for tileY = chunkPosition.y+1, chunkPosition.y+30 do
 
             for tileX = chunkPosition.x+1, chunkPosition.x+30 do
-
-                local resourceName = resource.resourceName
 
                 if resourceName == "mixed_" then
 
