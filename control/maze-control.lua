@@ -92,7 +92,7 @@ local function isInClearMazeArea(config, modSurfaceInfo, x, y)
     return y <= config.clearMazeStartChunks+1 and distanceFromOriginX < config.clearMazeStartChunks+1
 end
 
-local function calculateResource(config, surface, modSurfaceInfo, x, y)
+local function calculateResource(config, modSurfaceInfo, x, y)
 
     if isInClearMazeArea(config, modSurfaceInfo, x, y) then
         return
@@ -148,11 +148,11 @@ local function calculateResource(config, surface, modSurfaceInfo, x, y)
     row[x] = resource
 end
 
-function resourceAt(config, surface, modSurfaceInfo, coordinates)
+function resourceAt(config, modSurfaceInfo, coordinates)
 
     while coordinates.y > modSurfaceInfo.resourceGridCalculatedTo do
         for x = 1, modSurfaceInfo.maze.numColumns do
-            calculateResource(config, surface, modSurfaceInfo, x, modSurfaceInfo.resourceGridCalculatedTo + 1)
+            calculateResource(config, modSurfaceInfo, x, modSurfaceInfo.resourceGridCalculatedTo + 1)
         end
         modSurfaceInfo.resourceGridCalculatedTo = modSurfaceInfo.resourceGridCalculatedTo + 2
     end
@@ -165,10 +165,10 @@ function resourceAt(config, surface, modSurfaceInfo, coordinates)
     end
 end
 
-local function ensureResource(config, surface, modSurfaceInfo, chunksX, chunksY, fallbackY, desiredResource)
+local function ensureResource(config, modSurfaceInfo, chunksX, chunksY, fallbackY, desiredResource)
     for findY = 1, chunksY, 2 do
         for findX = 1, chunksX, 2 do
-            local resource = resourceAt(config, surface, modSurfaceInfo, {x=findX, y=findY})
+            local resource = resourceAt(config, modSurfaceInfo, {x=findX, y=findY})
             if resource and resource.resourceName == desiredResource then
                 modSurfaceInfo.firstResource[desiredResource] = {x=findX, y=findY}
                 return
@@ -179,7 +179,7 @@ local function ensureResource(config, surface, modSurfaceInfo, chunksX, chunksY,
     -- Couldn't find crude oil near enough, so replace another resource somewhere from row 7 onwards
     for findY = fallbackY, chunksY, 2 do
         for findX = 1, chunksX, 2 do
-            local resource = resourceAt(config, surface, modSurfaceInfo, {x=findX, y=findY})
+            local resource = resourceAt(config, modSurfaceInfo, {x=findX, y=findY})
             if resource and resource.resourceName then
                 modSurfaceInfo.firstResource[desiredResource] = {x=findX, y=findY}
                 resource.resourceName = desiredResource
@@ -269,7 +269,7 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
     modSurfaceInfo.firstResource = {}
 
     for k,v in pairs(config.ensureResources) do
-        ensureResource(config, surface, modSurfaceInfo, chunks, v.maxY, v.fallbackY, k)
+        ensureResource(config, modSurfaceInfo, chunks, v.maxY, v.fallbackY, k)
     end
 
     modSurfaceInfo.initComplete = true
@@ -288,7 +288,7 @@ end
 
 function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosition, mazePosition)
 
-    local resource = resourceAt(config, surface, modSurfaceInfo, mazePosition)
+    local resource = resourceAt(config, modSurfaceInfo, mazePosition)
 
     if resource and resource.resourceName then
 
@@ -673,7 +673,7 @@ local function resourceScanning(research, resourceName)
                 for findY = 1, maxY, 2 do
                     for findX = 1, modSurfaceInfo.maze.numColumns, 2 do
                         local coordinates = {x=findX, y=findY}
-                        local resource = resourceAt(config, surface, modSurfaceInfo, coordinates)
+                        local resource = resourceAt(config, modSurfaceInfo, coordinates)
                         if resource and resource.resourceName == resourceName then
                             local resourcePos = calculateChunkPositionFromMazeCoordinates(config, modSurfaceInfo, coordinates)
                             local resourceX = resourcePos.x

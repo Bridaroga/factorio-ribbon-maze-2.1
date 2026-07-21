@@ -33,7 +33,7 @@ local function fixes_0_6_7()
 
                 -- fix crude oil placement
                 if config.resources["crude-oil"] then
-                    local resource = resourceAt(config, surface, modSurfaceInfo, mazePosition)
+                    local resource = resourceAt(config, modSurfaceInfo, mazePosition)
                     if resource and resource.resourceName and resource.resourceName == "crude-oil" then
                         local chunkArea = {left_top = chunkTilePosition, right_bottom = {x = chunkTilePosition.x+31, y = chunkTilePosition.y+31}}
                         local resourcesToRemove = surface.find_entities_filtered{name="crude-oil", area=chunkArea}
