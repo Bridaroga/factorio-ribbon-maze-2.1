@@ -359,25 +359,79 @@ function createRibbonMazeConfig(surface)
         table.insert(resourceMatrix[4], "mixed_")
         table.insert(resourceMatrix[6], "mixed_")
     else
-        if deadEndEnabled(settingsGlobal, "iron-ore", surface) then
-            table.insert(resourceMatrix[2], "iron-ore")
-        end
+        if surface == "nauvis" then
+            if deadEndEnabled(settingsGlobal, "iron-ore", surface) then
+                table.insert(resourceMatrix[2], "iron-ore")
+            end
 
-        if deadEndEnabled(settingsGlobal, "coal", surface) then
-            table.insert(resourceMatrix[4], "coal")
-        end
+            if deadEndEnabled(settingsGlobal, "coal", surface) then
+                table.insert(resourceMatrix[4], "coal")
+            end
 
-        if deadEndEnabled(settingsGlobal, "copper-ore", surface) then
-            table.insert(resourceMatrix[6], "copper-ore")
+            if deadEndEnabled(settingsGlobal, "copper-ore", surface) then
+                table.insert(resourceMatrix[6], "copper-ore")
+            end
+
+        elseif surface == "vulcanus" then
+            if deadEndEnabled(settingsGlobal, "calcite", surface) then
+                table.insert(resourceMatrix[2], "calcite")
+                table.insert(resourceMatrix[8], "calcite")
+            end
+
+            if deadEndEnabled(settingsGlobal, "coal", surface) then
+                table.insert(resourceMatrix[4], "coal")
+                table.insert(resourceMatrix[10], "coal")
+            end
+
+            if deadEndEnabled(settingsGlobal, "tungsten-ore", surface) then
+                table.insert(resourceMatrix[6], "tungsten-ore")
+            end
         end
     end
 
-    if deadEndEnabled(settingsGlobal, "crude-oil", surface) then
-        table.insert(resourceMatrix[8], "crude-oil")
-    end
+    if surface == "nauvis" then
+        if deadEndEnabled(settingsGlobal, "crude-oil", surface) then
+            table.insert(resourceMatrix[8], "crude-oil")
+        end
 
-    if deadEndEnabled(settingsGlobal, "uranium-ore", surface) then
-        table.insert(resourceMatrix[10], "uranium-ore")
+        if deadEndEnabled(settingsGlobal, "uranium-ore", surface) then
+            table.insert(resourceMatrix[10], "uranium-ore")
+        end
+
+    elseif surface == "vulcanus" then
+        if deadEndEnabled(settingsGlobal, "sulfuric-acid-geyser", surface) then
+            table.insert(resourceMatrix[2], "sulfuric-acid-geyser")
+        end
+
+    elseif surface == "gleba" then
+        if deadEndEnabled(settingsGlobal, "stone", surface) then
+            table.insert(resourceMatrix[2], "stone")
+        end
+
+        if settingsGlobal["ribbon-maze-gleba-natural-yumako-soil"].value then
+            table.insert(resourceMatrix[4], "natural-yumako-soil_")
+        end
+
+        if settingsGlobal["ribbon-maze-gleba-natural-jellynut-soil"].value then
+            table.insert(resourceMatrix[4], "natural-jellynut-soil_")
+        end
+
+    elseif surface == "aquilo" then
+        if deadEndEnabled(settingsGlobal, "crude-oil", surface) then
+            table.insert(resourceMatrix[2], "crude-oil")
+            table.insert(resourceMatrix[4], "crude-oil")
+        end
+
+        if deadEndEnabled(settingsGlobal, "lithium-brine", surface) then
+            table.insert(resourceMatrix[2], "lithium-brine")
+            table.insert(resourceMatrix[4], "lithium-brine")
+            table.insert(resourceMatrix[8], "lithium-brine")
+        end
+
+        if deadEndEnabled(settingsGlobal, "fluorine-vent", surface) then
+            table.insert(resourceMatrix[6], "fluorine-vent")
+            table.insert(resourceMatrix[10], "fluorine-vent")
+        end
     end
 
     if settingsGlobal["ribbon-maze-water-resource"].value then
