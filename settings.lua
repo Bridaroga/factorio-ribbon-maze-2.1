@@ -212,14 +212,7 @@ data:extend({
         setting_type = "startup",
         default_value = "{}",
         hidden = true,
-    },
-    --[[{
-        type = "string-setting",
-        name = "modSurfaceInfo",
-        setting_type = "runtime-global",
-        default_value = "{}",
-        hidden = true,
-    }]]
+    }
 })
 
 if mods["space-age"] then
