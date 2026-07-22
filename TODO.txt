@@ -1,9 +1,6 @@
 #TODO
 |
 |-> Compatibilidad con Space Age.
-    - Recursos de otros planetas.
-        - Gleba:
-            - Piedra (en baja cantidad).
     - Enemigos de Vulcanus atacan los abismos.
     - Abismos de Vulcanus muy claros.
     - Océano profundo 2 de Aquilo no deja construir.

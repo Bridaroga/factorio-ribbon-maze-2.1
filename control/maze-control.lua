@@ -299,6 +299,10 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
         local resourceName = resource.resourceName
 
         local chunkRandomAdjustment = Cmwc.randFractionRange(resource.rng, resource.minRand, 1.0)
+        -- Just for Gleba stone.
+        if surface.name == "gleba" then
+            chunkRandomAdjustment = chunkRandomAdjustment * 0.1
+        end
 
         local mixedBag
         local patchworkSize
