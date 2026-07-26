@@ -1,7 +1,7 @@
 #TODO
 |
 |-> Compatibilidad con Space Age.
-    - Enemigos de Vulcanus atacan los abismos.
+    - Generar más enemigos, quizás en maze-control.lua: 672
     - Abismos de Vulcanus muy claros.
     - Océano profundo 2 de Aquilo no deja construir.
     - Generar maze distinto para cada plataforma espacial.

@@ -873,6 +873,7 @@ function ribbonMazeSurfaceCreated(event)
 
             game.forces["maze-terraforming-targets"].set_cease_fire("enemy", true)
             game.forces["enemy"].set_cease_fire("maze-terraforming-targets", true)
+            game.forces["enemy"].set_friend("maze-terraforming-targets", true)
 
             game.forces["maze-terraforming-artillery"].set_cease_fire("maze-terraforming-targets", false)
         end
@@ -923,6 +924,7 @@ function ribbonMazeInitHandler(surface)
 
             game.forces["maze-terraforming-targets"].set_cease_fire("enemy", true)
             game.forces["enemy"].set_cease_fire("maze-terraforming-targets", true)
+            game.forces["enemy"].set_friend("maze-terraforming-targets", true)
 
             game.forces["maze-terraforming-artillery"].set_cease_fire("maze-terraforming-targets", false)
         end
