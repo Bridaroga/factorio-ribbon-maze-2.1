@@ -20,7 +20,7 @@
    SOFTWARE.
 --]]
 
-data:extend{
+data:extend({
     {
         type = "simple-entity-with-force",
         name = "maze-terraforming-target",
@@ -32,15 +32,15 @@ data:extend{
             height = 1,
         },
         icon_size = 32,
-        collision_mask = {layers={is_object = true}},
-        collision_box = {{-0, -0}, {0, 0}},
-        selection_box = {{-1, -1}, {2.9, 2.9}},
+        collision_mask = { layers = { is_object = true } },
+        collision_box = { {-0, -0}, {0, 0} },
+        selection_box = { {-1, -1}, {2.9, 2.9} },
         shooting_cursor_size = 2,
-        flags = {"not-flammable", "not-repairable", "not-on-map", "not-blueprintable", "not-deconstructable", "not-rotatable"},
+        flags = { "not-flammable", "not-repairable", "not-on-map", "not-blueprintable", "not-deconstructable", "not-rotatable" },
         allow_copy_paste = false,
         minable = nil,
         max_health = 100000,
         corpse = nil,
         resistances = {}
     },
-}
+})
