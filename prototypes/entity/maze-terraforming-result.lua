@@ -24,14 +24,20 @@ data:extend{
     {
         type = "simple-entity",
         name = "maze-terraforming-result",
-        icon = "__base__/graphics/icons/wall.png",
+        icons = {
+            {
+                icon = "__base__/graphics/icons/wall.png",
+                icon_size = 64,
+                tint = { b = 1, a = 0.4 }
+            }
+        },
         picture = {
             filename = "__base__/graphics/entity/pipe/pipe-cross.png",
             priority = "extra-high",
+            tint = { b = 1 },
             width = 128,
             height = 128,
         },
-        icon_size = 32,
         collision_mask = {layers={}},
         collision_box = {{-0, -0}, {0, 0}},
         selection_box = {{-0, -0}, {0, 0}},
