@@ -38,7 +38,6 @@ mangroveHarvester.minable = {mining_time = 1, result = "mangrove-harvester"}
 mangroveHarvester.collision_mask = {layers={is_object = true}}
 mangroveHarvester.resource_categories = {"mangrove"}
 mangroveHarvester.energy_usage = "330kW"
-mangroveHarvester.mining_power = 2.5
 mangroveHarvester.mining_speed = 0.5
 mangroveHarvester.max_health = 2000
 
@@ -55,17 +54,16 @@ mangroveHarvester.radius_visualisation_picture =
 }
 
 mangroveHarvesterLayers[1].line_length = nil
-
 mangroveHarvesterLayers[1].frame_count = frame_count
-
 mangroveHarvesterLayers[1].animation_speed = animation_speed
-
 mangroveHarvesterLayers[1].run_mode = run_mode
-
-mangroveHarvesterLayers[1].scale = scale * 2
-
+mangroveHarvesterLayers[1].scale = scale * 1.2
 mangroveHarvesterLayers[1].tint = tint
-
 mangroveHarvesterLayers[1].shift = shift
+
+mangroveHarvester.graphics_set.animation.north.layers = mangroveHarvesterLayers
+mangroveHarvester.graphics_set.animation.south.layers = mangroveHarvesterLayers
+mangroveHarvester.graphics_set.animation.east.layers = mangroveHarvesterLayers
+mangroveHarvester.graphics_set.animation.west.layers = mangroveHarvesterLayers
 
 data:extend{mangroveHarvester}
