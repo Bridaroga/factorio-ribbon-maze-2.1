@@ -2,14 +2,13 @@
 |
 |-> Compatibilidad con Space Age.
     - Generar más enemigos, quizás en maze-control.lua: 672
-    - Abismos de Vulcanus muy claros.
     - Agrandar más la zona inicial de Vulcanus.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas.
+    - Ver si crear tecnologías para cada planeta para limpiar maze.
 |-> El agua a 65 °C no tiene utilidad.
 |-> Implementar maze normal.
 |-> El relleno no destruye los manglares.
-|-> Cambiar "Probabilidad de bucles" a algo que sea de 1 a 100 (0.00 - 1.00).
 |-> No se puede "cortar" la artillería.
 |-> Super-pegar no elimina la artillería.
 |-> Ver si se puede cambiar el sentido del ribbon world.
