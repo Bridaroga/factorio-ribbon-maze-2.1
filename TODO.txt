@@ -3,7 +3,7 @@
 |-> Compatibilidad con Space Age.
     - Generar más enemigos, quizás en maze-control.lua: 672
     - Abismos de Vulcanus muy claros.
-    - Océano profundo 2 de Aquilo no deja construir.
+    - Agrandar más la zona inicial de Vulcanus.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas.
 |-> El agua a 65 °C no tiene utilidad.

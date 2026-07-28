@@ -85,3 +85,7 @@ require('prototypes.achievements')
 -- shortcuts
 
 --require('prototypes.shortcuts')
+
+-- tiles
+
+require('prototypes.tile.maze-tiles')

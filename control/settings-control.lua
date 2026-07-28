@@ -611,7 +611,7 @@ function createRibbonMazeConfig(surface)
     end
 
     if surface == "aquilo" then
-        config2.mazeWallTile = "ammoniacal-ocean-2"
+        config2.mazeWallTile = "maze-ammoniacal-ocean"
         config2.waterTile = "ammoniacal-ocean"
     end
 
