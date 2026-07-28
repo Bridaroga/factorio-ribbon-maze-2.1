@@ -62,21 +62,6 @@ local function convertToMazeTile(mazeTile)
                 size = 4
             },
         },
-        inner_corner =
-        {
-            picture = "__RibbonMaze21__/graphics/terrain/maze-inner-corner.png",
-            count = 6,
-        },
-        outer_corner =
-        {
-            picture = "__RibbonMaze21__/graphics/terrain/maze-outer-corner.png",
-            count = 6,
-        },
-        side =
-        {
-            picture = "__RibbonMaze21__/graphics/terrain/maze-side.png",
-            count = 8,
-        }
     }
 end
 
