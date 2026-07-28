@@ -593,7 +593,7 @@ function createRibbonMazeConfig(surface)
     }
 
     if surface == "vulcanus" then
-        config2.mazeWallTile = "lava-hot"   -- Gjør murene til mørk vulkanstein
+        config2.mazeWallTile = "oil-ocean-deep-2"   -- Gjør murene til mørk vulkanstein
         config2.waterTile = "lava"          -- Valgfritt: Gjør vann-stier om til lava!
     end
 

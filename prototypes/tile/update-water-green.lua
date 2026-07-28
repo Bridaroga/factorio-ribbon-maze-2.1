@@ -21,11 +21,7 @@
 --]]
 
 local function convertToMazeTile(mazeTile)
-    if mazeTile == "lava-hot" then
-        mazeTile.tint = { r = 0, g = 0, b = 0.9 }
-    end
-
-    mazeTile.map_color={r=0.1, g=0.1, b=0.1}
+    mazeTile.map_color = { r = 0.1, g = 0.1, b = 0.1 }
 
     mazeTile.collision_mask = {
         layers = {
@@ -86,7 +82,7 @@ end
 
 -- Reuse water-green as a maze tile, this allows us to automatically use the base mod's tile transitions
 convertToMazeTile(data.raw.tile["water-green"])
-convertToMazeTile(data.raw.tile["lava-hot"])
+convertToMazeTile(data.raw.tile["maze-lava"])
 convertToMazeTile(data.raw.tile["gleba-deep-lake"])
 convertToMazeTile(data.raw.tile["oil-ocean-deep-2"])
 convertToMazeTile(data.raw.tile["maze-ammoniacal-ocean"])
