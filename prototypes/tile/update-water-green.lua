@@ -26,20 +26,20 @@ local function convertToMazeTile(mazeTile)
     mazeTile.collision_mask = {
         layers = {
             item = true,
-            water_tile= true,
-            player=true,
-            is_lower_object=true,
-            object=true,
-            is_object=true,
-            floor=true,
-            meltable=true,
-            doodad=true,
-            resource=true,
-            ground_tile=true
+            water_tile = true,
+            player = true,
+            is_lower_object = true,
+            object = true,
+            is_object = true,
+            floor = true,
+            meltable = true,
+            doodad = true,
+            resource = true,
+            ground_tile = true
         }
     }
 
-    mazeTile.effect_color = {0.02, 0.02, 0.02}
+    mazeTile.effect_color = { 0.02, 0.02, 0.02 }
 
     mazeTile.variants =
     {
@@ -59,7 +59,7 @@ local function convertToMazeTile(mazeTile)
             {
                 picture = "__RibbonMaze21__/graphics/terrain/maze-floor4.png",
                 count = 4,
-                size = 4,
+                size = 4
             },
         },
         inner_corner =
