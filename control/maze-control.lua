@@ -389,9 +389,7 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
             -- and the fish
             generateFish(config, surface, chunkPosition, resource.rng)
             return
-        end
-
-        if resourceName == "natural-yumako-soil_" then
+        elseif resourceName == "natural-yumako-soil_" then
             local updatedTiles = {}
 
             for tileX = chunkPosition.x, chunkPosition.x+31 do
@@ -415,9 +413,7 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
                     end
                 end
             end
-        end
-
-        if resourceName == "natural-jellynut-soil_" then
+        elseif resourceName == "natural-jellynut-soil_" then
             local updatedTiles = {}
 
             for tileX = chunkPosition.x, chunkPosition.x+31 do
@@ -515,12 +511,13 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
 
                     if amount >= 1 and ((not alignment) or (alignment.xPositions[tileXOffset] and alignment.yPositions[tileYOffset])) then
                         surface.create_entity{
-                            name=thisTileResource,
-                            amount=amount,
-                            initial_amount=amount,
-                            position={tileX, tileY},
-                            enable_tree_removal=true,
-                            enable_cliff_removal=true}
+                            name = thisTileResource,
+                            amount = amount,
+                            initial_amount = amount,
+                            position = {tileX, tileY},
+                            enable_tree_removal = true,
+                            enable_cliff_removal = true
+                        }
                     end
                 end
             end
