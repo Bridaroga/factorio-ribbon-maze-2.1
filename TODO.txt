@@ -1,8 +1,7 @@
 #TODO
 |
 |-> Compatibilidad con Space Age.
-    - Generar más enemigos, quizás en maze-control.lua: 672
-    - Agrandar más la zona inicial de Vulcanus.
+    - Crear Ruina de Fulgora en deadends.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas.
     - Ver si crear tecnologías para cada planeta para limpiar maze.
