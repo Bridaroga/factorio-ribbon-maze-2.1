@@ -678,6 +678,35 @@ function ribbonMazeChunkGeneratedEventHandler(event)
 
     surface.set_tiles(updatedTiles)
 
+    -- Spawn more enemies.
+    local clearEnemiesArea = config.clearMazeStartChunks + 2
+    for tileX = chunkTilePosition.x, chunkTilePosition.x+31 do
+        for tileY = chunkTilePosition.y, chunkTilePosition.y+31 do
+            local tile = surface.get_tile(tileX, tileY)
+            local randEnemy
+            if not inClearMazeArea
+                    and (surface.name == "nauvis" or surface.name == "gleba")
+                    and y > clearEnemiesArea
+                    and (tile.name == "red-desert-0" or tile.name == "wetland-blue-slime") then
+                randEnemy = Cmwc.randFraction(modSurfaceInfo.firstMazeRowMangroveRng[x])
+            end
+
+            if randEnemy and randEnemy < 0.0001 then
+                if surface.name == "nauvis" then
+                    surface.create_entity{name="biter-spawner", position={tileX,tileY}}
+                else
+                    surface.create_entity{name="gleba-spawner", position={tileX,tileY}}
+                end
+            elseif randEnemy and randEnemy > 0.9999 then
+                if surface.name == "nauvis" then
+                    surface.create_entity{name="spitter-spawner", position={tileX,tileY}}
+                else
+                    surface.create_entity{name="gleba-spawner-small", position={tileX,tileY}}
+                end
+            end
+        end
+    end
+
     if inClearMazeArea then
         return
     end
