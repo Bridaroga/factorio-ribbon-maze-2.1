@@ -326,8 +326,6 @@ function createRibbonMazeConfig(surface)
     waterTileReplacement["oil-ocean-deep-2"] = "fulgoran-dunes"
     waterTileReplacement["oil-ocean-shallow"] = "fulgoran-sand"
     waterTileReplacement["oil-ocean-shallow-2"] = "fulgoran-rock"
-    --waterTileReplacement["ammoniacal-ocean"] = "ice-rough"
-    --waterTileReplacement["ammoniacal-ocean-2"] = "ice-rough"
     waterTileReplacement["brash-ice"] = "ice-smooth"
 
     local resourceMatrix = {}
