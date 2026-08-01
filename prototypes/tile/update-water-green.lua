@@ -67,7 +67,6 @@ end
 
 -- Reuse water-green as a maze tile, this allows us to automatically use the base mod's tile transitions
 convertToMazeTile(data.raw.tile["water-green"])
-convertToMazeTile(data.raw.tile["maze-lava"])
 convertToMazeTile(data.raw.tile["gleba-deep-lake"])
 convertToMazeTile(data.raw.tile["oil-ocean-deep-2"])
 convertToMazeTile(data.raw.tile["maze-ammoniacal-ocean"])
