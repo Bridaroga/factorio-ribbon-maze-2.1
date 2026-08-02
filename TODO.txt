@@ -1,7 +1,7 @@
 #TODO
 |
 |-> Compatibilidad con Space Age.
-    - Crear Ruina de Fulgora en deadends.
+    - Ver si crear piso de fulgora solamente en caminos sin salida.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas.
     - Ver si crear tecnologías para cada planeta para limpiar maze.
