@@ -31,6 +31,7 @@ require "control.config-control"
 ----------------------------------------------------
 
 require "control.maze-control"
+require "control.fulgora.maze-control"
 
 script.on_init(function()
     local nauvis = game.surfaces["nauvis"]
