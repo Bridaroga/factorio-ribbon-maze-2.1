@@ -293,6 +293,15 @@ if mods["space-age"] then
             setting_type = "runtime-global",
             default_value = true,
             order="rb-[5aquilo]-c",
+        },
+        {
+            type = "double-setting",
+            name = "ribbon-maze-fulgora-floor-chance",
+            setting_type = "runtime-global",
+            minimum_value = 0.01,
+            maximum_value = 1,
+            default_value = 0.6,
+            order="rb-[floor-chance]-f",
         }
     })
 end
