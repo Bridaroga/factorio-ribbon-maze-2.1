@@ -1,7 +1,6 @@
 #TODO
 |
 |-> Compatibilidad con Space Age.
-    - Ver si crear piso de fulgora solamente en caminos sin salida.
     - Generar maze distinto para cada plataforma espacial.
     - Quitar agua de plataformas.
     - Ver si crear tecnologías para cada planeta para limpiar maze.
