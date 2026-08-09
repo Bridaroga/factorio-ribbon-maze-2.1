@@ -528,13 +528,7 @@ function ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkPosit
             end
         end
 
-        if surface.name == "fulgora" then
-            surface.create_entity{name="fulgoran-ruin-vault", position={chunkPosition.x + 16,chunkPosition.y + 16}}
-            surface.create_entity{name="fulgoran-ruin-attractor", position={chunkPosition.x + 2,chunkPosition.y + 2}}
-            surface.create_entity{name="fulgoran-ruin-attractor", position={chunkPosition.x + 2,chunkPosition.y + 29}}
-            surface.create_entity{name="fulgoran-ruin-attractor", position={chunkPosition.x + 29,chunkPosition.y + 2}}
-            surface.create_entity{name="fulgoran-ruin-attractor", position={chunkPosition.x + 29,chunkPosition.y + 29}}
-        end
+        fulgoraSetRuinVault(surface, chunkPosition.x, chunkPosition.y)
     end
 end
 
