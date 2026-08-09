@@ -204,15 +204,18 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
     local width
 
     -- Factorio 2.0 fiks: Hvis planeten har 0 i bredde/høyde, betyr det uendelig overflate (Space Age standard)
+    -- If the planet have 0 width/height, it means infinite surface (Spage Age standard).
     local map_width = surface.map_gen_settings.width or 0
     local map_height = surface.map_gen_settings.height or 0
 
     if map_width == 0 or map_height == 0 then
         -- Tving uendelige planeter som Vulcanus til å bruke standard labyrint-bredde
+        -- Force infinite planets (like Vulcanus) to use default maze width.
         width = config.mazeDefaultWidthChunks * 32
         modSurfaceInfo.mazeInfo.swapXY = false
     else
         -- Standard Nauvis-håndtering for endelige kart
+        -- Default Nauvis handling for final maps.
         if map_height < map_width then
             width = map_height
             modSurfaceInfo.mazeInfo.swapXY = true
@@ -222,6 +225,7 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
         end
 
         -- Juster bredden for endelige kart (ignore chunks på sidene)
+        -- Adjust width for final maps (ignore chunks on the sides).
         if width <= 0 or width >= 2000000 then
             width = config.mazeDefaultWidthChunks * 32
         elseif width > config.mazeMaxWidthChunks * 32 then
@@ -232,6 +236,7 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
     end
 
     -- NÅ er det trygt å sjekke om bredden er stor nok, siden '0' har blitt rettet opp!
+    -- It's safe to check if the width is large enought, since '0' has been corrected.
     if width < 160 then
         error('Maze too narrow, please pick a width or height of at least 160')
     end
