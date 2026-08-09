@@ -674,14 +674,21 @@ function ribbonMazeChunkGeneratedEventHandler(event)
 
     local updatedTiles = {}
 
-    for tileX = chunkTilePosition.x, chunkTilePosition.x+31 do
-        for tileY = chunkTilePosition.y, chunkTilePosition.y+31 do
-            local tile = surface.get_tile(tileX, tileY)
-            local replacement = config.waterTileReplacement[tile.name]
-            if replacement then
-                table.insert(updatedTiles, {name = replacement, position = {tileX, tileY}})
-            elseif tile.name == 'out-of-map' then
-                table.insert(updatedTiles, {name = "red-desert-0", position = {tileX, tileY}})
+    if surface.name == "fulgora"
+            and not inClearMazeArea
+            and not isDeadEnd(Maze, x, y)
+            and Cmwc.randFraction(modSurfaceInfo.firstMazeRowMangroveRng[x]) > config.floorChance then
+        -- Do nothing.
+    else
+        for tileX = chunkTilePosition.x, chunkTilePosition.x+31 do
+            for tileY = chunkTilePosition.y, chunkTilePosition.y+31 do
+                local tile = surface.get_tile(tileX, tileY)
+                local replacement = config.waterTileReplacement[tile.name]
+                if replacement then
+                    table.insert(updatedTiles, {name = replacement, position = {tileX, tileY}})
+                elseif tile.name == 'out-of-map' then
+                    table.insert(updatedTiles, {name = "red-desert-0", position = {tileX, tileY}})
+                end
             end
         end
     end
