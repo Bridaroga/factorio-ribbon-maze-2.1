@@ -26,7 +26,7 @@ function isDeadEnd(maze, x, y)
 end
 
 -- Make Fulgoran ruin vault and attractor on resources.
-function fulgoraResourceChunk(surface, x, y)
+function fulgoraSetRuinVault(surface, x, y)
     if surface.name ~= "fulgora" then
         return
     end
