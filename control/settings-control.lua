@@ -579,6 +579,8 @@ function createRibbonMazeConfig(surface)
 
         fishPerChunk = 10,
         fishList = fish,
+
+        floorChance = nil,
     }
 
     if surface == "vulcanus" then
