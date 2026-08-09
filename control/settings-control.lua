@@ -599,6 +599,8 @@ function createRibbonMazeConfig(surface)
     if surface == "fulgora" then
         config2.mazeWallTile = "oil-ocean-deep-2"
         config2.waterTile = "oil-ocean-deep"
+
+        config2.floorChance = settingsGlobal["ribbon-maze-fulgora-floor-chance"].value
     end
 
     if surface == "aquilo" then
