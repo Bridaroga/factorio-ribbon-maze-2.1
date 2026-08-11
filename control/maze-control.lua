@@ -197,7 +197,18 @@ local function initModSurfaceInfo(config, surface, modSurfaceInfo)
     if modSurfaceInfo.initComplete then
         return
     end
-    modSurfaceInfo.masterRng = modSurfaceInfo.masterRng or Cmwc.withSeed(surface.map_gen_settings.seed)
+
+    -- Generate a random seed for platforms because they start with seed = 1.
+    local platformSeed
+    if string.find(surface.name, "platform-", 1, true) then
+        platformSeed = math.random(4294967295)
+    end
+
+    if platformSeed then
+        modSurfaceInfo.masterRng = modSurfaceInfo.masterRng or Cmwc.withSeed(platformSeed)
+    else
+        modSurfaceInfo.masterRng = modSurfaceInfo.masterRng or Cmwc.withSeed(surface.map_gen_settings.seed)
+    end
 
     modSurfaceInfo.mazeInfo = {}
 
@@ -594,6 +605,11 @@ function ribbonMazeChunkGeneratedEventHandler(event)
     end
     initModSurfaceInfo(config, surface, modSurfaceInfo)
 
+    local platform = false
+    if string.find(surface.name, "platform-", 1, true) then
+        platform = true
+    end
+
     local chunkArea = event.area
     local chunkTilePosition = chunkArea.left_top
 
@@ -623,7 +639,11 @@ function ribbonMazeChunkGeneratedEventHandler(event)
     end
 
     local inClearMazeArea = isInClearMazeArea(config, modSurfaceInfo, x, y)
-    local isWaterRow = y < 1
+    local isWaterRow
+
+    if not platform then
+        isWaterRow = y < 1
+    end
 
     if isWaterRow then
         -- generate fish in the first row
@@ -650,7 +670,9 @@ function ribbonMazeChunkGeneratedEventHandler(event)
                 isFirstMazeWaterRowEdge(config, modSurfaceInfo, chunkTilePosition) and
                 config.terraformingPrototypesEnabled and
                 modSurfaceInfo.firstMazeRowMangroveRng[x] then
-            generateMangroves(modSurfaceInfo, surface, chunkTilePosition, modSurfaceInfo.firstMazeRowMangroveRng[x], config)
+            if not platform then
+                generateMangroves(modSurfaceInfo, surface, chunkTilePosition, modSurfaceInfo.firstMazeRowMangroveRng[x], config)
+            end
         elseif tileName == config.mazeWallTile then
             for tileX = chunkTilePosition.x+1, chunkTilePosition.x+29,4 do
                 for tileY = chunkTilePosition.y+1, chunkTilePosition.y+29,4 do
@@ -670,7 +692,7 @@ function ribbonMazeChunkGeneratedEventHandler(event)
 
     if surface.name == "fulgora"
             and not inClearMazeArea
-            and not isDeadEnd(Maze, x, y)
+            and not isDeadEnd(modSurfaceInfo.maze, x, y)
             and Cmwc.randFraction(modSurfaceInfo.firstMazeRowMangroveRng[x]) > config.floorChance then
         -- Do nothing.
     else
@@ -723,7 +745,9 @@ function ribbonMazeChunkGeneratedEventHandler(event)
         return
     end
 
-    ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkTilePosition, mazePosition)
+    if not platform then
+        ribbonMazeGenerateResources(config, modSurfaceInfo, surface, chunkTilePosition, mazePosition)
+    end
 end
 
 function ribbonMazePlayerCreatedEventHander(event)

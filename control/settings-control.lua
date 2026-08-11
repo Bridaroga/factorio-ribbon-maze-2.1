@@ -310,6 +310,11 @@ function createRibbonMazeConfig(surface)
     -- idea here is to access the settings table just once per event, for performance
     local settingsGlobal = settings.global
 
+    local platform = false
+    if string.find(surface, "platform-", 1, true) then
+        platform = true
+    end
+
     local waterTileReplacement = {}
     waterTileReplacement["water"] = "red-desert-0"
     waterTileReplacement["water-green"] = "red-desert-1"
@@ -418,7 +423,7 @@ function createRibbonMazeConfig(surface)
         end
     end
 
-    if settingsGlobal["ribbon-maze-water-resource"].value then
+    if settingsGlobal["ribbon-maze-water-resource"].value and not platform then
         table.insert(resourceMatrix[8], "water_")
         table.insert(resourceMatrix[10], "water_")
     end
@@ -436,38 +441,40 @@ function createRibbonMazeConfig(surface)
 
     local fish = {}
 
-    for name,prototype in pairs(prototypes.entity) do
-        if prototype.type=="fish" then
-            table.insert(fish, name)
-        end
-        if deadEndEnabled(settingsGlobal, name, surface) then
-
-            resources[name] = true
-            local mixedOreStrength = mixedOreStrengths[name] or guessMixedOreStrength(name)
-
-            local resourceCorridorDepth = resourceCorridorDepths[name] or guessResourceCorridorDepths(name)
-            for _,depth in pairs(resourceCorridorDepth) do
-                if not resourceMatrix[depth] then
-                    resourceMatrix[depth] = {}
-                end
-                if mixedOresPreferred and mixedOreStrength > 0 then
-                    table.insert(resourceMatrix[depth], "mixed_")
-                else
-                    table.insert(resourceMatrix[depth], name)
-                end
+    if not platform then
+        for name,prototype in pairs(prototypes.entity) do
+            if prototype.type=="fish" then
+                table.insert(fish, name)
             end
+            if deadEndEnabled(settingsGlobal, name, surface) then
 
-            for i=1,mixedOreStrength do
-                table.insert(mixedResources, name)
-            end
-            if mixedOreStrength > 0 then
-                table.insert(forcedMixedResources, name)
-            end
-        elseif infiniteOres then
-            local finiteOre = infiniteOre(prototype)
-            if finiteOre and deadEndEnabled(settingsGlobal, finiteOre, surface) then
-                infiniteOres[finiteOre] = name
                 resources[name] = true
+                local mixedOreStrength = mixedOreStrengths[name] or guessMixedOreStrength(name)
+
+                local resourceCorridorDepth = resourceCorridorDepths[name] or guessResourceCorridorDepths(name)
+                for _,depth in pairs(resourceCorridorDepth) do
+                    if not resourceMatrix[depth] then
+                        resourceMatrix[depth] = {}
+                    end
+                    if mixedOresPreferred and mixedOreStrength > 0 then
+                        table.insert(resourceMatrix[depth], "mixed_")
+                    else
+                        table.insert(resourceMatrix[depth], name)
+                    end
+                end
+
+                for i=1,mixedOreStrength do
+                    table.insert(mixedResources, name)
+                end
+                if mixedOreStrength > 0 then
+                    table.insert(forcedMixedResources, name)
+                end
+            elseif infiniteOres then
+                local finiteOre = infiniteOre(prototype)
+                if finiteOre and deadEndEnabled(settingsGlobal, finiteOre, surface) then
+                    infiniteOres[finiteOre] = name
+                    resources[name] = true
+                end
             end
         end
     end
@@ -582,6 +589,10 @@ function createRibbonMazeConfig(surface)
 
         floorChance = nil,
     }
+
+    if platform then
+        config2.waterTile = "empty-space"
+    end
 
     if surface == "vulcanus" then
         config2.mazeWallTile = "oil-ocean-deep-2"   -- Gjør murene til mørk vulkanstein
