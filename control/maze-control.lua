@@ -598,6 +598,10 @@ end
 function ribbonMazeChunkGeneratedEventHandler(event)
     local surface = event.surface
     local config = ribbonMazeConfig(surface.name)
+    if not config.terraformingSurface then
+        return
+    end
+
     local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
@@ -754,6 +758,10 @@ function ribbonMazePlayerCreatedEventHander(event)
     local player = game.players[event.player_index]
     local surface = player.surface
     local config = ribbonMazeConfig(surface.name)
+    if not config.terraformingSurface then
+        return
+    end
+
     local modSurfaceInfo = storage["ribbonMazeConfig"][surface.name].modSurfaceInfo
     -- if modSurfaceInfo is absent, this isn't a surface we are managing
     if not modSurfaceInfo then
@@ -814,6 +822,11 @@ local function resourceScanning(research, resourceName)
 end
 
 function ribbonMazeResourceFinishedEventHandler(event)
+    local config = ribbonMazeConfig("nauvis")
+    if not config.terraformingSurface then
+        return
+    end
+
     local research = event.research
     if research and research.name == "oil-scanning" then
         resourceScanning(research, "crude-oil")

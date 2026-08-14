@@ -302,6 +302,65 @@ if mods["space-age"] then
             maximum_value = 1,
             default_value = 0.6,
             order="rb-[floor-chance]-f",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-nauvis-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[1Mnauvis]",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-vulcanus-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[2Mvulcanus]",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-gleba-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[3Mgleba]",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-fulgora-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[4Mfulgora]",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-aquilo-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[5Maquilo]",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-platform-generate-maze",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[6Mplatform]",
+        },
+        {
+            type = "int-setting",
+            name = "ribbon-maze-space-age",
+            setting_type = "startup",
+            default_value = 1,
+            hidden = true,
+        }
+    })
+else
+    data:extend({
+        {
+            type = "int-setting",
+            name = "ribbon-maze-space-age",
+            setting_type = "startup",
+            default_value = 0,
+            hidden = true,
         }
     })
 end

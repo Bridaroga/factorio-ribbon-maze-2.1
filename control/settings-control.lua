@@ -311,8 +311,19 @@ function createRibbonMazeConfig(surface)
     local settingsGlobal = settings.global
 
     local platform = false
-    if string.find(surface, "platform-", 1, true) then
-        platform = true
+    local mazeSurface = false
+    if settingsSpaceAge == 1 then   -- Probar
+        if string.find(surface, "platform-", 1, true) then
+            platform = true
+
+            if settingsGlobal["ribbon-maze-platform-generate-maze"].value then
+                mazeSurface = true
+            end
+        elseif settingsGlobal["ribbon-maze-" .. surface .. "-generate-maze"].value then
+            mazeSurface = true
+        end
+    else
+        mazeSurface = true
     end
 
     local waterTileReplacement = {}
@@ -514,6 +525,9 @@ function createRibbonMazeConfig(surface)
     end
 
     local config2 = {
+        -- Terraforming surface
+        terraformingSurface = mazeSurface,
+
         -- True if terraforming prototypes are available, in which case entities and forces will be created to allow
         -- automated terraforming with artillery
         terraformingPrototypesEnabled = true,

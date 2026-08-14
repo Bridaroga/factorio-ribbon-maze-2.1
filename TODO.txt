@@ -3,7 +3,6 @@
 |-> Compatibilidad con Space Age.
     - Ver si crear tecnologías para cada planeta para limpiar maze.
     - Verificar migración de saves.
-|-> Agregar setting para omitir planetas con laberintos.
 |-> El agua a 65 °C no tiene utilidad.
 |-> Implementar maze normal.
 |-> El relleno no destruye los manglares.
