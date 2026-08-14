@@ -87,5 +87,6 @@ require('prototypes.achievements')
 --require('prototypes.shortcuts')
 
 -- tiles
-
-require('prototypes.tile.maze-tiles')
+if mods["space-age"] then
+   require('prototypes.tile.maze-tiles')
+end
