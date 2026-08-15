@@ -20,42 +20,82 @@
    SOFTWARE.
 --]]
 
-data:extend{{
-    type = "technology",
-    name = "maze-terraforming",
-    icons = {{
-        icon = "__base__/graphics/technology/artillery.png",
-        icon_size = 256,
-        tint = { r=0.21, g=0.41, b=0.9, a=1.0 },
-    }},
-    effects = {
-        {
-            type = "unlock-recipe",
-            recipe = "maze-terraforming-artillery-wagon"
+if mods["space-age"] then
+    data:extend{{
+        type = "technology",
+        name = "maze-terraforming",
+        icons = {{
+            icon = "__base__/graphics/technology/artillery.png",
+            icon_size = 256,
+            tint = { r=0.21, g=0.41, b=0.9, a=1.0 },
+        }},
+        effects = {
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-wagon"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-turret"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-shell"
+            },
         },
-        {
-            type = "unlock-recipe",
-            recipe = "maze-terraforming-artillery-turret"
+        prerequisites = {"atomic-bomb", "artillery", "landfill", "cliff-explosives"},
+        unit = {
+            ingredients =
+            {
+                {"automation-science-pack", 1},
+                {"logistic-science-pack", 1},
+                {"chemical-science-pack", 1},
+                {"production-science-pack", 1},
+                {"utility-science-pack", 1},
+                {"space-science-pack", 1},
+                {"metallurgic-science-pack", 1}
+            },
+            time = 60,
+            count = 5000
         },
-        {
-            type = "unlock-recipe",
-            recipe = "maze-terraforming-artillery-shell"
+        order = "d-e-f"
+    }}
+else
+    data:extend{{
+        type = "technology",
+        name = "maze-terraforming",
+        icons = {{
+            icon = "__base__/graphics/technology/artillery.png",
+            icon_size = 256,
+            tint = { r=0.21, g=0.41, b=0.9, a=1.0 },
+        }},
+        effects = {
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-wagon"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-turret"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "maze-terraforming-artillery-shell"
+            },
         },
-    },
-    prerequisites = {"atomic-bomb", "artillery", "landfill", "cliff-explosives"},
-    unit = {
-        ingredients =
-        {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+        prerequisites = {"atomic-bomb", "artillery", "landfill", "cliff-explosives"},
+        unit = {
+            ingredients =
+            {
+                {"automation-science-pack", 1},
+                {"logistic-science-pack", 1},
+                {"chemical-science-pack", 1},
+                {"production-science-pack", 1},
+                {"utility-science-pack", 1}
+            },
+            time = 30,
+            count = 5000
         },
-        time = 30,
-        count = 5000
-    },
-    order = "d-e-f"
-}
-}
-
+        order = "d-e-f"
+    }}
+end
