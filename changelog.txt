@@ -1,4 +1,50 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.75
+Date: 15. 08. 2026
+  Major Features:
+    - Added settings for every planet and platforms when [space-age] mod is active.
+  Minor Features:
+    - Added "Fulgoran vault ruin" and "Fulgoran lightning attractor" to dead ends in Fulgora.
+    - Added chance to generate floor on Fulgora's oil ocean.
+  Combat Balancing:
+    - Spawn more enemies in Nauvis and Gleba.
+  Changes:
+    - Updated "storage" table to save each surface in their "surface" table.
+    - Changed "modSurfaceInfo" visibility.
+    - Changed order of resources settings.
+    - Changed Gleba stone generation to 10%.
+  Bugfixes:
+    - Fixed demolishers attacking maze walls.
+    - Fixed [maze-terraforming-target] icon.
+    - Fixed [maze-terraforming-result] icon.
+    - Fixed [mangrove-harvester] graphics.
+    - Fixed errors when [space-age] mod is deactivated.
+  Scripting:
+    - Deleted ribbonMazeInitHandler() event.
+    - Deleted ribbonMazeSurfaceCreated() duplicated event.
+    - Deleted outdated code.
+    - Deleted unused variables.
+    - Commented unused functions.
+    - Fixed data:extend format in settings.lua.
+    - Added "surface" parameter to "updateRibbonMazeConfig" function.
+    - Added "surface" parameter to "ribbonMazeConfig" function.
+    - Added "surface" parameter to "deadEndEnabled" function.
+    - Added surface checks in "deadEndEnabled" function.
+    - Added resources checks for another planets in "deadEndEnabled" function.
+    - Added floor tiles of planets to "waterTileReplacement" table.
+    - Added planet tiles to "mazeWallTile".
+    - Added planet tiles to "waterTile".
+    - Added Fulgora maze-control.lua.
+    - Changed fulgoraResourceChunk name function to fulgoraSetRuinVault.
+  Info:
+    - Typography, identation and syntax formatting.
+    - Added planet resources control settings and descriptions.
+    - Added [maze-terraforming-result] name.
+    - Added name and description to "ribbon-maze-fulgora-floor-chance" setting.
+  Compatibility:
+    - Compatible with [Quality].
+    - Compatible with [Space Age].
+---------------------------------------------------------------------------------------------------
 Version: 2.1.40
 Date: 12. 07. 2026
   Changes:
