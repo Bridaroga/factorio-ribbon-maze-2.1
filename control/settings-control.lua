@@ -308,12 +308,12 @@ end
 function createRibbonMazeConfig(surface)
 
     -- idea here is to access the settings table just once per event, for performance
-    local settingsSpaceAge = settings.startup["ribbon-maze-space-age"].value    -- Pasa solo a true
+    local settingsSpaceAge = settings.startup["ribbon-maze-space-age"].value
     local settingsGlobal = settings.global
 
     local platform = false
     local mazeSurface = false
-    if settingsSpaceAge == 1 then   -- Probar
+    if settingsSpaceAge == 1 then
         if string.find(surface, "platform-", 1, true) then
             platform = true
 
