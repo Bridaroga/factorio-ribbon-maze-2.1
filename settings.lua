@@ -247,31 +247,31 @@ if mods["space-age"] then
         },
         {
             type = "bool-setting",
-            name = "ribbon-maze-fulgora-scrap",
-            setting_type = "runtime-global",
-            default_value = true,
-            order="rb-[3fulgora]-a",
-        },
-        {
-            type = "bool-setting",
             name = "ribbon-maze-gleba-stone",
             setting_type = "runtime-global",
             default_value = true,
-            order="rb-[4gleba]-a",
+            order="rb-[3gleba]-a",
         },
         {
             type = "bool-setting",
             name = "ribbon-maze-gleba-natural-yumako-soil", --tile
             setting_type = "runtime-global",
             default_value = true,
-            order="rb-[4gleba]-b",
+            order="rb-[3gleba]-b",
         },
         {
             type = "bool-setting",
             name = "ribbon-maze-gleba-natural-jellynut-soil", --tile
             setting_type = "runtime-global",
             default_value = true,
-            order="rb-[4gleba]-c",
+            order="rb-[3gleba]-c",
+        },
+        {
+            type = "bool-setting",
+            name = "ribbon-maze-fulgora-scrap",
+            setting_type = "runtime-global",
+            default_value = true,
+            order="rb-[4fulgora]-a",
         },
         {
             type = "bool-setting",
