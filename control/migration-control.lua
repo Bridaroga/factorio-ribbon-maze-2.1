@@ -88,7 +88,10 @@ end
 
 -- register with script.on_configuration_changed(ribbonMazeConfigurationChanged):
 function ribbonMazeConfigurationChanged(event)
-    updateRibbonMazeConfig()
+    local config = storage["ribbonMazeConfig"]
+    for surface, _ in pairs(config) do
+        updateRibbonMazeConfig(surface)
+    end
     if event and event.mod_changes and event.mod_changes["RibbonMaze"] then
         runtimeControlMigrations(event.mod_changes["RibbonMaze"].old_version)
     end
